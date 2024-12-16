@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/adress-service/adress-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/adress-service/adress-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/analysis-service/analysis-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/analysis-service/analysis-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/config-service/config-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/config-service/config-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/contact_laboratory-service/contact_laboratory-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/contact_laboratory-service/contact_laboratory-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/dossier-service/dossier-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/dossier-service/dossier-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/epreuve-service/epreuve-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/epreuve-service/epreuve-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/examen-service/examen-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/examen-service/examen-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/gateway-service/gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lab-project.iml" filepath="$PROJECT_DIR$/.idea/lab-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/laboratory-service/laboratory-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/laboratory-service/laboratory-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Laboratory-Management-project/user-service/user-service.iml" filepath="$PROJECT_DIR$/../Laboratory-Management-project/user-service/user-service.iml" />
+    </modules>
+  </component>
+</project>

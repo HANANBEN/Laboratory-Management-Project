@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/adress-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/adress-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/analysis-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/analysis-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/config-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/config-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/contact_laboratory-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/contact_laboratory-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/dossier-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/dossier-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/epreuve-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/epreuve-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/examen-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/examen-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/gateway-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/gateway-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/laboratory-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/laboratory-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Laboratory-Management-project/user-service/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

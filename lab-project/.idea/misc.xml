@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/adress-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/analysis-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/config-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/contact_laboratory-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/epreuve-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/examen-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/laboratory-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/dossier-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../Laboratory-Management-project/user-service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="21" project-jdk-type="JavaSDK" />
+</project>
