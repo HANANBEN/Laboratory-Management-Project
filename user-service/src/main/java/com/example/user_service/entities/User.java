@@ -3,6 +3,7 @@ package com.example.user_service.entities;
 import com.example.user_service.model.Laboratory;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.CommandLineRunner;
 
 @Entity
 @Table(name = "utilisateur")
@@ -17,6 +18,9 @@ public class User {
 
     @Column(name = "nom_complet", nullable = false)
     private String nomComplet;
+
+    @Column(name="mode_de_passe")
+    private String password;
 
     @Column(name = "profession")
     private String profession;
@@ -36,5 +40,7 @@ public class User {
 
     @Transient
     private Laboratory laboratory;
+
+
 
 }
