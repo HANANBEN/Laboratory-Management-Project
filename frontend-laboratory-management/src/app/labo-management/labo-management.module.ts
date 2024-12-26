@@ -4,17 +4,18 @@ import { CommonModule } from '@angular/common';
 import { LaboManagementRoutingModule } from './labo-management-routing.module';
 import { LaboListComponent } from './components/labo-list/labo-list.component';
 import { LaboCreateComponent } from './components/labo-create/labo-create.component';
-import { LaboEditComponent } from './components/labo-edit/labo-edit.component';
 import { LaboViewComponent } from './components/labo-view/labo-view.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {RouterModule} from '@angular/router';
+
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {LaboEditComponent} from './components/labo-edit/labo-edit.component';
 
 
 @NgModule({
   declarations: [
-    LaboCreateComponent,
-    LaboEditComponent,
+
+
     LaboViewComponent,
 
   ],
@@ -24,8 +25,11 @@ import {RouterModule} from '@angular/router';
     LaboManagementRoutingModule,
     FormsModule,
     HttpClientModule,
-    LaboListComponent
+    LaboListComponent,
+    LaboCreateComponent,
+    MatSnackBarModule,
+    LaboEditComponent,
 
   ]
 })
-export class LaboManagementModule { }
+export class LaboManagementModule {}

@@ -1,8 +1,8 @@
 export interface Laboratoire {
   id?: number;
   nom: string;
-  logo: string;
+  logo: string | File; // Accept string or File
   nrc: string; // Numero de Registre de Commerce
-  isActive: boolean;
+  isActive: boolean; // This should be explicitly defined here
   dateActivation?: Date;
 }

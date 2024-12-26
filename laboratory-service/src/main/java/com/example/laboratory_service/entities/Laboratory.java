@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Entity
 @Data
-@AllArgsConstructor
 @Builder
 public class Laboratory {
 
@@ -19,7 +18,6 @@ public class Laboratory {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Génération automatique par la base de données
     private Long id;
 
-    @Column(nullable = false)
     private String nom;
     @Column(columnDefinition = "TEXT")
     private String logo;
@@ -37,4 +35,64 @@ public class Laboratory {
         this.dateActivation = dateActivation;
     }
 
+    public Laboratory(Long id, String nom, String logo, String nrc, boolean active, Date dateActivation) {
+        this.id = id;
+        this.nom = nom;
+        this.logo = logo;
+        this.nrc = nrc;
+        this.active = active;
+        this.dateActivation = dateActivation;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String nom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String logo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String nrc() {
+        return nrc;
+    }
+
+    public void setNrc(String nrc) {
+        this.nrc = nrc;
+    }
+
+    public boolean active() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date dateActivation() {
+        return dateActivation;
+    }
+
+    public void setDateActivation(Date dateActivation) {
+        this.dateActivation = dateActivation;
+    }
 }

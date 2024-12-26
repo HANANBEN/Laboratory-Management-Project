@@ -9,9 +9,9 @@ import { LaboViewComponent } from './components/labo-view/labo-view.component';
 
 const routes: Routes = [
   { path: 'list', component: LaboListComponent },
+  { path: 'edit/:id', component: LaboEditComponent },
+  { path: 'create', component: LaboCreateComponent },
 
-  { path: 'laboratories/edit/:id', component: LaboEditComponent },
-  { path: 'laboratories/create', component: LaboCreateComponent },
 ];
 
 @NgModule({
