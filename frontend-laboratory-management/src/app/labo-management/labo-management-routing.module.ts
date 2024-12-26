@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LaboListComponent } from './components/labo-list/labo-list.component';
 import { LaboCreateComponent } from './components/labo-create/labo-create.component';
 import { LaboEditComponent } from './components/labo-edit/labo-edit.component';
-import { LaboViewComponent } from './components/labo-view/labo-view.component';
 
 const routes: Routes = [
   { path: 'list', component: LaboListComponent },

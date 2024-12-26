@@ -3,55 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="gateway-service" />
-        <module name="config-service" />
-      </profile>
-      <profile name="Annotation profile for contact_laboratory-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="dossier-service" />
-        <module name="analysis-service" />
-        <module name="laboratory-service" />
-        <module name="examen-service" />
-        <module name="contact_laboratory-service" />
-        <module name="user-service" />
-        <module name="adress-service" />
-        <module name="epreuve-service" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="adress-service" target="19" />
-      <module name="analysis-service" target="19" />
-      <module name="config-service" target="19" />
-      <module name="contact_laboratory-service" target="19" />
-      <module name="dossier-service" target="19" />
-      <module name="epreuve-service" target="19" />
-      <module name="examen-service" target="19" />
-      <module name="gateway-service" target="19" />
-      <module name="laboratory-service" target="19" />
-      <module name="user-service" target="19" />
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="adress-service" options="-parameters" />
-      <module name="analysis-service" options="-parameters" />
-      <module name="config-service" options="-parameters" />
-      <module name="contact_laboratory-service" options="-parameters" />
-      <module name="dossier-service" options="-parameters" />
-      <module name="epreuve-service" options="-parameters" />
-      <module name="examen-service" options="-parameters" />
-      <module name="gateway-service" options="-parameters" />
-      <module name="laboratory-service" options="-parameters" />
-      <module name="user-service" options="-parameters" />
-    </option>
   </component>
 </project>
