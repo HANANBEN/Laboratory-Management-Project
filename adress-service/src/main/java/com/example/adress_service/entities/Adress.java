@@ -17,5 +17,15 @@ public class Adress {
     private Long codePostal; // Code postal de la localité
     private String ville;      // Ville où se situe l'adresse
     private String commune;    // Commune associée à l'adresse
+    public Adress (){}
+    public Adress(Long id, int numVoie, String nomVoie, Long codePostal, String ville, String commune) {
+        this.id = id;
+        this.numVoie = numVoie;
+        this.nomVoie = nomVoie;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.commune = commune;
+    }
 
 }
+
