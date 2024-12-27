@@ -21,4 +21,53 @@ import java.util.Date;
             this.active = active;
             this.dateActivation = dateActivation;
         }
+
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String nom() {
+            return nom;
+        }
+
+        public void setNom(String nom) {
+            this.nom = nom;
+        }
+
+        public String logo() {
+            return logo;
+        }
+
+        public void setLogo(String logo) {
+            this.logo = logo;
+        }
+
+        public String nrc() {
+            return nrc;
+        }
+
+        public void setNrc(String nrc) {
+            this.nrc = nrc;
+        }
+
+        public boolean active() {
+            return active;
+        }
+
+        public void setActive(boolean active) {
+            this.active = active;
+        }
+
+        public Date dateActivation() {
+            return dateActivation;
+        }
+
+        public void setDateActivation(Date dateActivation) {
+            this.dateActivation = dateActivation;
+        }
     }

@@ -18,6 +18,7 @@ import { AdressManagementModule } from './adress-management/adress-management.mo
     AppComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
