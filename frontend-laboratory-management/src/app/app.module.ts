@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {LaboManagementModule} from './labo-management/labo-management.module';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {HomePageRoutingModule} from './home-page/home-page-routing.module';
+
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {RouterModule} from '@angular/router';
     LaboManagementModule,
     FormsModule,
     RouterModule,
+    HomePageRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
