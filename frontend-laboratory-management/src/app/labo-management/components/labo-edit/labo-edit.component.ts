@@ -39,6 +39,18 @@ export class LaboEditComponent implements OnInit {
       this.router.navigate(['/laboratories/list']);
     }
   }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files && input.files.length > 0) {
+      const file = input.files[0];
+      console.log('File selected:', file);
+      // Ajoutez ici la logique de traitement du fichier, par exemple :
+      // - Lecture du fichier
+      // - Téléchargement vers un serveur
+    } else {
+      console.error('No file selected or input is invalid.');
+    }
+  }
 
   loadLaboratoryData(id: number): void {
     this.laboratoireService.getLaboratoireById(id).subscribe(

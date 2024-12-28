@@ -7,6 +7,7 @@ import { AdressHomeComponent } from './components/adress-home/adress-home.compon
 import { AdressListComponent } from './components/adress-list/adress-list.component';
 import { AdressCreateComponent } from './components/adress-create/adress-create.component';
 import { AdressEditComponent } from './components/adress-edit/adress-edit.component';
+import {AdressManagementRoutingModule} from './adress-management-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AdressEditComponent } from './components/adress-edit/adress-edit.compon
     AdressEditComponent,
     CommonModule,
     FormsModule,
+    AdressManagementRoutingModule,
     RouterModule
   ],
   exports: [AdressCreateComponent]

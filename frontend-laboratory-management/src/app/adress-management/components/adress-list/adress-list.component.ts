@@ -68,4 +68,17 @@ export class AdressListComponent implements OnInit {
   navigateToCreate(): void {
     this.router.navigate(['/addresses/create']);
   }
+
+  deleteAddress(id: number): void {
+    this.adressService.deleteAddress(id).subscribe({
+      next: () => {
+        console.log(`Address with ID ${id} deleted successfully.`);
+        // Supprimez l'adresse localement pour mettre à jour la liste sans recharger
+        this.addresses = this.addresses.filter(address => address.id !== id);
+      },
+      error: (err) => {
+        console.error(`Error deleting address with ID ${id}:`, err);
+      }
+    });
+  }
 }
