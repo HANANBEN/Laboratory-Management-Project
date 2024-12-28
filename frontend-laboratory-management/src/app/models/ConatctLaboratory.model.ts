@@ -1,5 +1,5 @@
 import {Laboratoire} from './laboratoire.model';
-import {Adress} from './Adress.model';
+import {Adress} from './adress.model';
 
 export interface ContactLaboratory {
   id: number;

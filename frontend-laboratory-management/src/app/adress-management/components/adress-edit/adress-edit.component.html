@@ -1,0 +1,72 @@
+<section class="vh-100" style="background-color: #f8f9fa;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3 shadow">
+          <div class="card-body p-4">
+            <h4 class="text-center my-4 pb-3 text-primary">Editer Addresse</h4>
+            <form (ngSubmit)="updateAddress()">
+              <!-- Street -->
+              <div class="mb-3">
+                <label for="street" class="form-label">Nom Voie</label>
+                <input
+                  type="text"
+                  id="street"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="address.nomVoie"
+                  name="street"
+                  required
+                />
+              </div>
+
+              <!-- City -->
+              <div class="mb-3">
+                <label for="city" class="form-label">Ville</label>
+                <input
+                  type="text"
+                  id="city"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="address.ville"
+                  name="city"
+                  required
+                />
+              </div>
+
+              <!-- Postal Code -->
+              <div class="mb-3">
+                <label for="postalCode" class="form-label">Code Postal</label>
+                <input
+                  type="text"
+                  id="postalCode"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="address.codePostal"
+                  name="postalCode"
+                  required
+                />
+              </div>
+
+              <!-- Country -->
+              <div class="mb-3">
+                <label for="country" class="form-label">Commune</label>
+                <input
+                  type="text"
+                  id="country"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="address.commune"
+                  name="country"
+                  required
+                />
+              </div>
+
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary shadow-sm w-100">
+                <i class="fas fa-save"></i> Update Address
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

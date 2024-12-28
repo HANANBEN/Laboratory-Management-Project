@@ -6,6 +6,7 @@ import {ContactLaboratory} from '../../../models/ConatctLaboratory.model';
 import {ContactLaboratoryService} from '../../../services/contactLaboratory-service/contact-laboratory.service';
 
 import { ChangeDetectorRef } from '@angular/core';
+import {AdressService} from '../../../services/adress-service/adress-service.service';
 @Component({
   selector: 'app-list-contact-labo',
   imports: [CommonModule, FormsModule],
@@ -16,11 +17,13 @@ import { ChangeDetectorRef } from '@angular/core';
 export class ListContactLaboComponent implements OnInit {
   contactLaboratories: ContactLaboratory[] = [];
   labId!: number;
+
   constructor(
     private contactLaboratoryService: ContactLaboratoryService,
+    private adressService: AdressService, // Inject the AdressService
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private cdr: ChangeDetectorRef // Add this
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +37,19 @@ export class ListContactLaboComponent implements OnInit {
       this.contactLaboratoryService.listContactLaboratoryByIdLaboratory(this.labId).subscribe({
         next: (contacts) => {
           this.contactLaboratories = contacts;
-          console.log('Contact Laboratories:', this.contactLaboratories);
+          // For each contact, retrieve the address using the fkIdAdress
+          this.contactLaboratories.forEach(contact => {
+            this.adressService.getAdressById(contact.fkIdAdress).subscribe({
+              next: (address) => {
+                contact.adress = address;
+                console.log(address);// Assign the fetched address to the contact
+              },
+              error: (err) => {
+                console.error('Error fetching address:', err);
+              }
+            });
+          });
+          console.log('Contact Laboratories with addresses:', this.contactLaboratories);
         },
         error: (err) => {
           console.error('Error fetching contacts:', err);
@@ -42,7 +57,6 @@ export class ListContactLaboComponent implements OnInit {
       });
     }
   }
-
 
   navigateToEdit(contactId: number): void {
     this.router.navigate([`/edit-contact/${contactId}`]);

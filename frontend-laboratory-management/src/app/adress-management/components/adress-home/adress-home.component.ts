@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-adress-home', // Le sélecteur que vous utiliserez dans l'HTML
   templateUrl: './adress-home.component.html', // Le fichier HTML associé
   styleUrls: ['./adress-home.component.css'],
-  standalone : true ,
+   standalone : true ,
 
 })
 export class AdressHomeComponent {

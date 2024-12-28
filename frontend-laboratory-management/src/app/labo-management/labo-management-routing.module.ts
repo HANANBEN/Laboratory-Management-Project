@@ -6,6 +6,7 @@ import { LaboListComponent } from './components/labo-list/labo-list.component';
 import { LaboCreateComponent } from './components/labo-create/labo-create.component';
 import { LaboEditComponent } from './components/labo-edit/labo-edit.component';
 
+
 const routes: Routes = [
   { path: 'list', component: LaboListComponent },
   { path: 'edit/:id', component: LaboEditComponent },
