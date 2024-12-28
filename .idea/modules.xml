@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Laboratory-Management-project.iml" filepath="$PROJECT_DIR$/.idea/Laboratory-Management-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Laboratory-Management-Project.iml" filepath="$PROJECT_DIR$/.idea/Laboratory-Management-Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/adress-service/adress-service.iml" filepath="$PROJECT_DIR$/adress-service/adress-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/analysis-service/analysis-service.iml" filepath="$PROJECT_DIR$/analysis-service/analysis-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/config-service/config-service.iml" filepath="$PROJECT_DIR$/config-service/config-service.iml" />

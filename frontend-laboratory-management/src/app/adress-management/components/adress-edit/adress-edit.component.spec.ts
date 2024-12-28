@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LaboViewComponent } from './labo-view.component';
+import { AdressEditComponent } from './adress-edit.component';
 
-describe('LaboViewComponent', () => {
-  let component: LaboViewComponent;
-  let fixture: ComponentFixture<LaboViewComponent>;
+describe('AdressEditComponent', () => {
+  let component: AdressEditComponent;
+  let fixture: ComponentFixture<AdressEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LaboViewComponent]
+      declarations: [AdressEditComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LaboViewComponent);
+    fixture = TestBed.createComponent(AdressEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

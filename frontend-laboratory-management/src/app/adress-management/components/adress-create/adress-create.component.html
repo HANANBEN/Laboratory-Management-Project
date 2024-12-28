@@ -1,0 +1,84 @@
+<section class="vh-100" style="background-color: #f8f9fa;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3 shadow">
+          <div class="card-body p-4">
+            <h4 class="text-center my-4 pb-3 text-primary">Create Address</h4>
+            <form (ngSubmit)="createAdress()" #adressForm="ngForm">
+              <!-- Numéro de Voie -->
+              <div class="mb-3">
+                <label for="numVoie" class="form-label">Numéro de Voie</label>
+                <input
+                  type="number"
+                  id="numVoie"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="adress.numVoie"
+                  name="numVoie"
+                  required
+                />
+              </div>
+
+              <!-- Nom de Voie -->
+              <div class="mb-3">
+                <label for="nomVoie" class="form-label">Nom de Voie</label>
+                <input
+                  type="text"
+                  id="nomVoie"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="adress.nomVoie"
+                  name="nomVoie"
+                  required
+                />
+              </div>
+
+              <!-- Code Postal -->
+              <div class="mb-3">
+                <label for="codePostal" class="form-label">Code Postal</label>
+                <input
+                  type="number"
+                  id="codePostal"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="adress.codePostal"
+                  name="codePostal"
+                  required
+                />
+              </div>
+
+              <!-- Ville -->
+              <div class="mb-3">
+                <label for="ville" class="form-label">Ville</label>
+                <input
+                  type="text"
+                  id="ville"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="adress.ville"
+                  name="ville"
+                  required
+                />
+              </div>
+
+              <!-- Commune -->
+              <div class="mb-3">
+                <label for="commune" class="form-label">Commune</label>
+                <input
+                  type="text"
+                  id="commune"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="adress.commune"
+                  name="commune"
+                  required
+                />
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary shadow-sm w-100">
+                <i class="fas fa-save"></i> Create Address
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

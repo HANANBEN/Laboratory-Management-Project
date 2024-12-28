@@ -10,21 +10,32 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+
+import { AdressManagementModule } from './adress-management/adress-management.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
+
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LaboManagementModule,
+    AdressManagementModule,
     FormsModule,
     RouterModule,
     HomePageRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
