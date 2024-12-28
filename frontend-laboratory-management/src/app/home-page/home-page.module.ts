@@ -10,6 +10,11 @@ import { ProjetComponent } from './components/projet/projet.component';
 import { ServiceComponent } from './components/service/service.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateaccountComponent } from './components/createaccount/createaccount.component';
+import { RouterModule } from '@angular/router';
+import { PatientDashboardComponentComponent } from './components/patient-dashboard-component/patient-dashboard-component.component';
+import { TechnicianDashboardComponentComponent } from './components/technician-dashboard-component/technician-dashboard-component.component';
+import { AdminDashboardComponentComponent } from './components/admin-dashboard-component/admin-dashboard-component.component';
+
 
 
 
@@ -21,7 +26,10 @@ import { CreateaccountComponent } from './components/createaccount/createaccount
     ProjetComponent,
     ServiceComponent,
     ContactComponent,
-    CreateaccountComponent
+    CreateaccountComponent,
+    PatientDashboardComponentComponent,
+    TechnicianDashboardComponentComponent,
+    AdminDashboardComponentComponent
   ],
   imports: [
     CommonModule,

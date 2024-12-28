@@ -6,6 +6,7 @@ import {LaboManagementModule} from './labo-management/labo-management.module';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HomePageRoutingModule} from './home-page/home-page-routing.module';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -20,7 +21,8 @@ import {HomePageRoutingModule} from './home-page/home-page-routing.module';
     LaboManagementModule,
     FormsModule,
     RouterModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

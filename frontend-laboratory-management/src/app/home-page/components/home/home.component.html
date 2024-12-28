@@ -25,20 +25,53 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/home/apropos" routerLinkActive="active">Qui sommes-nous</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/home/login" routerLinkActive="active">Espace patient</a></li>
+
+          <!-- Espace Patient -->
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/home/login']"
+              [queryParams]="{ userSpace: 'patient' }"
+              routerLinkActive="active"
+            >
+              Espace patient
+            </a>
+          </li>
+
+          <!-- Dropdown pour Espace Professionnel -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Espace professionnel
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item nav-item" routerLink="/home/login" routerLinkActive="active">Espace Admin</a></li>
-              <li><a class="dropdown-item nav-item" routerLink="/home/login" routerLinkActive="active">Espace Technicien</a></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="['/home/login']"
+                  [queryParams]="{ userSpace: 'admin' }"
+                  routerLinkActive="active"
+                >
+                  Espace Admin
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="['/home/login']"
+                  [queryParams]="{ userSpace: 'technicien' }"
+                  routerLinkActive="active"
+                >
+                  Espace Technicien
+                </a>
+              </li>
             </ul>
           </li>
+
           <li class="nav-item"><a class="nav-link" routerLink="/home/contact" routerLinkActive="active">Contact</a></li>
         </ul>
+
       </div>
     </div>
   </nav>
@@ -64,7 +97,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xxl-5 padding: 100px;">
+        <div class="col-xxl-6 padding: 100px;">
           <!-- Header profile picture-->
           <div class="d-flex justify-content-center mt-5 mt-xxl-0">
             <div class="profile bg-gradient-primary-to-secondary">
