@@ -5,6 +5,7 @@ import com.example.adress_service.repositories.AdressRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 
 import java.nio.file.Files;
@@ -18,6 +19,9 @@ public class AdressServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AdressServiceApplication.class, args);
 	}
+
+
+	@Bean
 	CommandLineRunner start(AdressRepository adrep){
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return args -> {

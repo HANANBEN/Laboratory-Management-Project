@@ -39,4 +39,67 @@ public class ContactLaboratory{
     @Column(nullable = false)
     private String email;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long fkIdLaboratory() {
+        return fkIdLaboratory;
+    }
+
+    public void setFkIdLaboratory(Long fkIdLaboratory) {
+        this.fkIdLaboratory = fkIdLaboratory;
+    }
+
+    public Laboratory laboratory() {
+        return laboratory;
+    }
+
+    public void setLaboratory(Laboratory laboratory) {
+        this.laboratory = laboratory;
+    }
+
+    public Long fkIdAdress() {
+        return fkIdAdress;
+    }
+
+    public void setFkIdAdress(Long fkIdAdress) {
+        this.fkIdAdress = fkIdAdress;
+    }
+
+    public Adress adress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
+
+    public String numTel() {
+        return numTel;
+    }
+
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
+    }
+
+    public String fax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String email() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -1,15 +1,6 @@
 package com.example.analysis_service.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.Date;
-
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Laboratory {
 
     private Long id;
@@ -20,7 +11,63 @@ public class Laboratory {
 
     private Date dateActivation;
 
+    public Laboratory() {
+    }
+
+    public Laboratory(String nom, String logo, String nrc, boolean active, Date dateActivation) {
+        this.nom = nom;
+        this.logo = logo;
+        this.nrc = nrc;
+        this.active = active;
+        this.dateActivation = dateActivation;
+    }
 
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String nom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String logo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String nrc() {
+        return nrc;
+    }
+
+    public void setNrc(String nrc) {
+        this.nrc = nrc;
+    }
+
+    public boolean active() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date dateActivation() {
+        return dateActivation;
+    }
+
+    public void setDateActivation(Date dateActivation) {
+        this.dateActivation = dateActivation;
+    }
 }

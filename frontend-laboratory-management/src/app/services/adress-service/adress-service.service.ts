@@ -1,38 +1,47 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, map, Observable, throwError} from 'rxjs';
 import { Adress } from '../../models/adress.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdressService {
-  private adressApiUrl = 'http://localhost:8003/addresses'; // URL de l'API des adresses
+  private adressApiUrl = 'http://localhost:8003/adresses'; // Base URL for the address API
+  private projectionParam = 'projection=fullAdress'; // Query parameter for projection
 
   constructor(private http: HttpClient) {}
 
-  // Méthode pour récupérer toutes les adresses
   getAddresses(): Observable<Adress[]> {
-    return this.http.get<Adress[]>(this.adressApiUrl);
+    return this.http.get<any>(`${this.adressApiUrl}?${this.projectionParam}`).pipe(
+      map((response) => {
+        console.log('Mapped API response:', response); // Log full response
+        return response._embedded?.adresses || []; // Correct mapping
+      }),
+      catchError((error) => {
+        console.error('Error fetching addresses:', error);
+        return throwError(() => new Error('Failed to fetch addresses'));
+      })
+    );
   }
 
-  // Méthode pour récupérer une adresse par ID
+  // Method to fetch an address by ID
   getAdressById(id: number): Observable<Adress> {
-    return this.http.get<Adress>(`${this.adressApiUrl}/${id}`);
+    return this.http.get<Adress>(`${this.adressApiUrl}/${id}?${this.projectionParam}`);
   }
 
-  // Méthode pour créer une nouvelle adresse
+  // Method to create a new address
   createAdress(adress: { nomVoie: string; ville: string; numVoie: number; commune: string; codePostal: number }): Observable<Adress> {
-    return this.http.post<Adress>(this.adressApiUrl, adress);
+    return this.http.post<Adress>(`${this.adressApiUrl}?${this.projectionParam}`, adress);
   }
 
-  // Méthode pour mettre à jour une adresse
+  // Method to update an address
   updateAdress(id: number, adress: Adress): Observable<Adress> {
-    return this.http.put<Adress>(`${this.adressApiUrl}/${id}`, adress);
+    return this.http.put<Adress>(`${this.adressApiUrl}/${id}?${this.projectionParam}`, adress);
   }
 
-  // Méthode pour supprimer une adresse
+  // Method to delete an address
   deleteAddress(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.adressApiUrl}/${id}`);
+    return this.http.delete<void>(`${this.adressApiUrl}/${id}?${this.projectionParam}`);
   }
 }

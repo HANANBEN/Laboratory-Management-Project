@@ -14,9 +14,6 @@ import {LaboEditComponent} from './components/labo-edit/labo-edit.component';
 @NgModule({
   declarations: [
 
-
-
-
   ],
   imports: [
 

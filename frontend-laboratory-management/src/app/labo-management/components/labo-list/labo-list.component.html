@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
 <section class="vh-100" style="background-color: #f8f9fa;">
   <div class="container py-5 h-100">
@@ -79,13 +80,22 @@
                   <td>{{ laboratoire.dateActivation ? (laboratoire.dateActivation | date: 'yyyy-MM-dd') : 'Unknown date' }}</td>
 
                   <td>
-                    <a class="btn btn-outline-warning btn-sm shadow me-2"
-                       (click)="navigateToEdit(laboratoire.id?.toString())"> <!-- Pass the laboratory ID -->
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="btn btn-outline-danger btn-sm shadow">
-                      <i class="fas fa-trash"></i>
-                    </a>
+                    <div class="d-flex align-items-center gap-3"> <!-- Flex container with spacing -->
+                      <!-- Edit Button -->
+                      <a class="btn btn-outline-warning btn-sm shadow" (click)="navigateToEdit(laboratoire.id?.toString())">
+                        <i class="fas fa-edit"></i>
+                      </a>
+
+                      <!-- Delete Button -->
+                      <a class="btn btn-outline-danger btn-sm shadow">
+                        <i class="fas fa-trash"></i>
+                      </a>
+
+                      <!-- Voir Contacts Button -->
+                      <button class="btn btn-outline-gray btn-sm shadow" (click)="navigateToListContact(laboratoire.id?.toString())">
+                        <i class="bi bi-eye-fill"></i> Voir Contacts
+                      </button>
+                    </div>
                   </td>
                 </tr>
                 </tbody>

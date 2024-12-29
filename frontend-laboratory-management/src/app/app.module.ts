@@ -7,15 +7,17 @@ import {LaboManagementModule} from './labo-management/labo-management.module';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
-import { AdressManagementModule } from './adress-management/adress-management.module';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+
+import { AdressManagementModule } from './adress-management/adress-management.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
 
 
   ],

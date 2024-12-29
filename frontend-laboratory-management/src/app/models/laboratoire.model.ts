@@ -5,4 +5,5 @@ export interface Laboratoire {
   nrc: string; // Numero de Registre de Commerce
   isActive: boolean; // This should be explicitly defined here
   dateActivation?: Date;
+
 }

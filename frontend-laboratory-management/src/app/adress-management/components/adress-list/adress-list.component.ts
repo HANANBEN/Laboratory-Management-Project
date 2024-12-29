@@ -27,17 +27,18 @@ export class AdressListComponent implements OnInit {
 
   loadAddresses(): void {
     this.adressService.getAddresses().subscribe({
-      next: (data: any) => {
-        console.log('Loaded addresses:', data); // Log full response
-        this.allAddresses = data._embedded?.addresses || []; // Store original data
+      next: (addresses) => {
+        console.log('Raw API response:', addresses); // Debug API response
+        this.allAddresses = addresses; // Assign the data
         this.addresses = [...this.allAddresses]; // Initialize display list
-        console.log('Extracted addresses:', this.addresses); // Debug extracted list
+        console.log('Addresses loaded:', this.addresses); // Debugging
       },
       error: (err) => {
         console.error('Failed to load addresses:', err);
-        this.addresses = [...this.allAddresses];
+        this.addresses = [];
       },
     });
+
   }
 
   search(): void {

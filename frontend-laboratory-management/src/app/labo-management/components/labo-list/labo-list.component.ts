@@ -84,6 +84,15 @@ export class LaboListComponent implements OnInit {
     this.router.navigate(['/laboratories/create']);
   }
 
+
+  navigateToListContact(labId: string | undefined): void {
+    if (labId) {
+      this.router.navigate(['/contact-laboratories/contacts', labId]);
+    } else {
+      console.error('Laboratory ID is undefined');
+    }
+  }
+
 }
 
 
