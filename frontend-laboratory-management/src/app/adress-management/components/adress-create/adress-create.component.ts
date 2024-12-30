@@ -55,4 +55,9 @@ export class AdressCreateComponent {
       }
     );
   }
+
+  navigateToList(){
+
+    this.router.navigate(["/adress/list"])
+  }
 }

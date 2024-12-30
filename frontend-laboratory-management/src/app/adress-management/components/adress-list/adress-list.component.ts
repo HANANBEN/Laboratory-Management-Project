@@ -60,14 +60,14 @@ export class AdressListComponent implements OnInit {
 
   navigateToEdit(id: string | undefined): void {
     if (id) {
-      this.router.navigate(['/addresses/edit', id]); // Pass the ID as a route parameter
+      this.router.navigate(['/adress/edit', id]); // Pass the ID as a route parameter
     } else {
       console.error('ID is undefined');
     }
   }
 
   navigateToCreate(): void {
-    this.router.navigate(['/addresses/create']);
+    this.router.navigate(['/adress/create']);
   }
 
   deleteAddress(id: number): void {

@@ -76,5 +76,10 @@ export class AdressEditComponent implements OnInit {
         }
       );
     }
+
+  }
+  navigateToList(){
+
+    this.router.navigate(["/adress/list"])
   }
 }

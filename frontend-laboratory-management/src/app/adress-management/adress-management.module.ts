@@ -20,13 +20,8 @@ import {AdressManagementRoutingModule} from './adress-management-routing.module'
     AdressEditComponent,
     CommonModule,
     FormsModule,
-<<<<<<< HEAD
-    AdressManagementRoutingModule,
-    RouterModule
-=======
     RouterModule,
     AdressManagementRoutingModule
->>>>>>> cf32f206826e576cb84e3df9900e691786a6b6f5
   ],
   exports: [AdressCreateComponent]
 })

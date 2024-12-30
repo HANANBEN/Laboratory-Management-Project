@@ -71,21 +71,11 @@
                   <td>{{ address.ville || 'Unknown' }}</td>
                   <td>{{ address.commune || 'Unknown' }}</td>
                   <td>
-<<<<<<< HEAD
-                    <a class="btn btn-outline-warning btn-sm shadow me-2"
-                       (click)="navigateToEdit(address.id.toString())">
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="btn btn-outline-danger btn-sm shadow" (click)="deleteAddress(address.id)">
-
-                    <i class="fas fa-trash"></i>
-=======
                     <a class="btn btn-outline-warning btn-sm shadow me-2" (click)="navigateToEdit(address.id?.toString())">
                       <i class="fas fa-edit"></i>
                     </a>
-                    <a class="btn btn-outline-danger btn-sm shadow">
+                    <a class="btn btn-outline-danger btn-sm shadow" >
                       <i class="fas fa-trash"></i>
->>>>>>> cf32f206826e576cb84e3df9900e691786a6b6f5
                     </a>
                   </td>
                 </tr>
