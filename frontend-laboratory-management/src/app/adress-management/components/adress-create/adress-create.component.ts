@@ -41,7 +41,7 @@ export class AdressCreateComponent {
         });
 
         // Navigate to the addresses list
-        this.router.navigate(['/addresses/list']);
+        this.router.navigate(['/adress/list']);
       },
       (error: any) => {
         console.error('Error creating address:', error);
