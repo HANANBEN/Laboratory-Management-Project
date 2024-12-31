@@ -62,11 +62,27 @@ export class ListContactLaboComponent implements OnInit {
     this.router.navigate([`/edit-contact/${contactId}`]);
   }
 
-  deleteContact(contactId: number): void {
+  /*deleteContact(contactId: number): void {
     if (confirm('Are you sure you want to delete this contact?')) {
-      // Implement delete logic if API available
-      console.log('Delete contact:', contactId);
+      this.contactLaboratoryService.deleteContactLaboratory(contactId).subscribe({
+        next: () => {
+          alert('Contact deleted successfully!');
+          this.loadContacts();
+        },
+        error: (error) => console.error('Error deleting contact:', error),
+      });
     }
+  }
+*/
+  addNewContact(): void {
+    this.router.navigate(['/contact-laboratories/add-contact-labo'], { queryParams: { labId: this.labId } });
+
+    console.log("seeeeeeeeeeeeeeeeeeee");
+    console.log(this.labId);
+  }
+
+  navigateToLaboratories(): void {
+    this.router.navigate(['/laboratories/list']);
   }
 
 }

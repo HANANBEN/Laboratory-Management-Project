@@ -3,6 +3,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
 
 
+
+
+
+
 <section class="vh-100" style="background-color: #f8f9fa;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,14 +19,14 @@
                 <i class="fas fa-arrow-left"></i> Back to List of Laboratories
               </button>
               <!-- Add New Contact Button -->
-              <button class="btn btn-primary" (click)="addNewContact()">
-                <i class="fas fa-plus-circle"></i> Add New Contact
+              <button class="btn btn-primary" (click)="createNewContact()">
+                <i class="fas fa-plus-circle"></i> Create Contact
               </button>
             </div>
 
             <h4 class="text-center my-4 pb-3 text-primary">Laboratory Contacts</h4>
 
-            <div *ngIf="contactLaboratories.length > 0; else noData">
+            <div *ngIf="contactsWithNullLaboratory.length > 0; else noData">
               <table class="table table-striped table-bordered shadow-sm">
                 <thead class="table-primary">
                 <tr>
@@ -30,32 +34,19 @@
                   <th scope="col">Phone</th>
                   <th scope="col">Fax</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Address</th>
                   <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let contact of contactLaboratories">
+                <tr *ngFor="let contact of contactsWithNullLaboratory">
                   <td>{{ contact.id }}</td>
                   <td>{{ contact.numTel || 'No Phone' }}</td>
                   <td>{{ contact.fax || 'No Fax' }}</td>
                   <td>{{ contact.email || 'No Email' }}</td>
                   <td>
-                    {{ contact.adress?.numVoie || '' }} {{ contact.adress?.nomVoie || '' }},
-                    {{ contact.adress?.codePostal || '' }} {{ contact.adress?.ville || '' }},
-                    {{ contact.adress?.commune || '' }}
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <!-- Edit Button -->
-                      <a class="btn btn-outline-warning btn-sm shadow" (click)="navigateToEdit(contact.id)">
-                        <i class="fas fa-edit"></i>
-                      </a>
-                      <!-- Delete Button -->
-                      <a class="btn btn-outline-danger btn-sm shadow" >
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </div>
+                    <button class="btn btn-outline-success btn-sm" (click)="assignLaboratory(contact.id)">
+                      Assign to this Laboratory
+                    </button>
                   </td>
                 </tr>
                 </tbody>
@@ -65,7 +56,7 @@
             <ng-template #noData>
               <div class="alert alert-warning text-center shadow-sm" role="alert">
                 <p class="mb-0">
-                  <i class="fas fa-exclamation-circle text-warning"></i> No contacts found for this laboratory!
+                  <i class="fas fa-exclamation-circle text-warning"></i> No contacts available to assign.
                 </p>
               </div>
             </ng-template>
