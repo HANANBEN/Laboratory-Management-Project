@@ -14,11 +14,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 
 import { AdressManagementModule } from './adress-management/adress-management.module';
+import { ManageProfileComponent } from './home-page/components/manage-profile/manage-profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ManageProfileComponent,
 
 
 

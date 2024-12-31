@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { Utilisateur } from '../../models/utilisateur.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private userApiUrl = 'http://localhost:8082/users?projection=fullUser';
+  private userApiUrl = 'http://localhost:8082/api/users';
   private currentUserSpace: string = ''; // Définir une propriété pour stocker l'espace utilisateur.
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Getter pour obtenir l'espace actuel
   getUserSpace(): string {
@@ -37,13 +37,19 @@ export class UserService {
     return this.http.post<Utilisateur>(this.userApiUrl, utilisateur);
   }
 
-  // Mettre à jour un utilisateur
-  updateUtilisateur(id: number, utilisateur: Utilisateur): Observable<Utilisateur> {
-    return this.http.put<Utilisateur>(`${this.userApiUrl}/${id}`, utilisateur);
-  }
-
   // Supprimer un utilisateur
   deleteUtilisateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.userApiUrl}/${id}`);
+  }
+
+  // Récupérer un utilisateur par son email
+  getUtilisateurByEmail(email: string): Observable<Utilisateur> {
+    // L'URL est mise à jour pour inclure la recherche par email
+    return this.http.get<Utilisateur>(`http://localhost:8082/users/search/findByEmail?email=${email}`);
+  }
+
+  // Mettre à jour un utilisateur
+  updateUtilisateur(user: Utilisateur): Observable<Utilisateur> {
+    return this.http.put<Utilisateur>(`http://localhost:8082/api/users/update`, user);
   }
 }

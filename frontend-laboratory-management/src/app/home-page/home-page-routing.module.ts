@@ -17,6 +17,7 @@ import {
   PatientDashboardComponentComponent
 } from './components/patient-dashboard-component/patient-dashboard-component.component';
 import {AuthGuard} from '../guard/auth.guard';
+import {ManageProfileComponent} from './components/manage-profile/manage-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Pas de chemin supplémentaire,
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'admin/dashboard', component: AdminDashboardComponentComponent, canActivate: [AuthGuard], data: { role: 'admin' } },
   { path: 'technician/dashboard', component: TechnicianDashboardComponentComponent , canActivate: [AuthGuard], data: { role: 'technicien' } },
   { path: 'patient/dashboard', component: PatientDashboardComponentComponent, canActivate: [AuthGuard], data: { role: 'patient' } },
+  { path: 'manage-profile', component: ManageProfileComponent },
+
 ];
 
 @NgModule({
