@@ -24,7 +24,6 @@ export class AdressService {
       })
     );
   }
-
   // Method to fetch an address by ID
   getAdressById(id: number): Observable<Adress> {
     return this.http.get<Adress>(`${this.adressApiUrl}/${id}?${this.projectionParam}`);

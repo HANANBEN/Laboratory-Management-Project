@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
 
@@ -12,19 +11,16 @@
           <form (ngSubmit)="saveContact()">
             <!-- Email Field -->
             <div class="form-group mb-4">
-              <label for="email" class="form-label">Email:</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                <input
-                  type="email"
-                  id="email"
-                  [(ngModel)]="contact.email"
-                  name="email"
-                  class="form-control"
-                  required
-                  placeholder="Enter email"
-                />
-              </div>
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="contact.email"
+                name="email"
+                class="form-control"
+                required
+                placeholder="Enter email"
+              />
+              <div *ngIf="!contact.email" class="text-danger">Email is required.</div>
             </div>
 
             <!-- Phone Field -->
@@ -69,21 +65,37 @@
                 name="adress"
                 class="form-select"
               >
-                <option value="0">Not assigned to any address</option>
+                <option value="0" disabled selected>Select an address</option>
                 <option *ngFor="let addr of addresses" [value]="addr.id">
                   {{ addr.numVoie }} {{ addr.nomVoie }}, {{ addr.ville }}
                 </option>
               </select>
             </div>
 
-            <!-- Submit Button -->
-            <div class="d-flex justify-content-center">
+            <!-- Laboratory Dropdown -->
+            <div class="form-group mb-4">
+              <label for="laboratory" class="form-label">Assign Laboratory:</label>
+              <select
+                id="laboratory"
+                [(ngModel)]="contact.fkIdLaboratory"
+                name="laboratory"
+                class="form-select"
+              >
+                <option value="0" disabled selected>Select a laboratory</option>
+                <option *ngFor="let lab of laboratories" [value]="lab.id">
+                  Nom: {{ lab.nom }}, NRC: {{ lab.nrc }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-center flex-wrap gap-2">
               <button type="submit" class="btn btn-primary shadow-sm">
                 <i class="fas fa-save"></i> Save Contact
               </button>
               <button
                 type="button"
-                class="btn btn-secondary ms-3 shadow-sm"
+                class="btn btn-secondary shadow-sm"
                 (click)="cancel()"
               >
                 <i class="fas fa-times"></i> Cancel

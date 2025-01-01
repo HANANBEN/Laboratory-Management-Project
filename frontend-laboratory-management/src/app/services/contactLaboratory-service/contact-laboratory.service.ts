@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { ContactLaboratory } from '../../models/ConatctLaboratory.model';
+import {Laboratoire} from '../../models/laboratoire.model';
+import {Adress} from '../../models/adress.model';
+import {ContactLaboratoryDTO} from '../../models/ContactLaboratoryDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +49,27 @@ export class ContactLaboratoryService {
     );
   }
 
+  // Fetch contacts with null laboratories
+  getLaboratoriesNotAssigned(): Observable<Laboratoire[]> {
+    const url = `${this.BASE_URL}/laboratoriesListNotAssigned`;
+    return this.http.get<Laboratoire[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error retrieving Laboratories Not Assigned:', error);
+        return throwError(() => new Error('Error retrieving Laboratories Not Assigned'));
+      })
+    );
+  }
+
+  getAdressesNotAssigned(): Observable<Adress[]> {
+    const url = `${this.BASE_URL}/addressesListNotAssigned`;
+    return this.http.get<Adress[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error retrieving Laboratories Not Assigned:', error);
+        return throwError(() => new Error('Error retrieving Laboratories Not Assigned'));
+      })
+    );
+  }
+
 
   // Method to update a contact's fkIdLaboratory
   updateContactLaboratory(id: number, contact: ContactLaboratory): Observable<ContactLaboratory> {
@@ -58,12 +82,22 @@ export class ContactLaboratoryService {
     );
   }
 
-  addContact(contact: ContactLaboratory): Observable<ContactLaboratory> {
+  addContact(contact: ContactLaboratoryDTO): Observable<ContactLaboratoryDTO> {
     const url = `${this.BASE_URL}/create`;
-    return this.http.post<ContactLaboratory>(url, contact).pipe(
+    return this.http.post<ContactLaboratoryDTO>(url, contact).pipe(
       catchError((error) => {
         console.error('Error adding new contact:', error);
         return throwError(() => new Error('Failed to add new contact'));
+      })
+    );
+  }
+
+  listAllContacts(): Observable<ContactLaboratory[]> {
+    const url = `${this.BASE_URL}/listAllContactLaboratories`;
+    return this.http.get<ContactLaboratory[]>(url).pipe(
+      catchError((error) => {
+        console.error('could not retrieve the Data, error');
+        return throwError(() => new Error('could not retrieve the Data'));
       })
     );
   }
