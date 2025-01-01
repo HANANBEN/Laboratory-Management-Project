@@ -1,5 +1,6 @@
 package com.example.user_service.web;
 
+import com.example.user_service.jms.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,58 +16,89 @@ import java.util.Map;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final MessageSender messageSender;
+
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, MessageSender messageSender) {
         this.userRepository = userRepository;
+        this.messageSender = messageSender;
     }
 
+    // Validation de l'ancien mot de passe
+    @PostMapping("/validate-password")
+    public ResponseEntity<?> validateOldPassword(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String oldPassword = request.get("oldPassword");
+
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "User not found"));
+        }
+
+        if (!user.getPassword().equals(oldPassword)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Old password is incorrect"));
+        }
+
+        return ResponseEntity.ok(Map.of("message", "Password is valid"));
+    }
+
+
+    // Envoi d'un email de récupération de mot de passe
+    @PostMapping("/recover-password")
+    public ResponseEntity<?> recoverPassword(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+
+        // Vérifiez si l'utilisateur existe
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "User with this email does not exist"));
+        }
+
+        // Envoyer un message JMS pour l'envoi de l'email
+        String subject = "Password Recovery Request";
+        String body = "We have received a password recovery request for your account. Please follow the instructions to reset your password.";
+
+        // Envoi de l'email via JMS
+        messageSender.sendEmailMessage(email, subject, body);
+
+        // Retourner une réponse de succès
+        return ResponseEntity.ok(Map.of("message", "Password recovery email sent successfully"));
+    }
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        // Rechercher l'utilisateur par email
         User user = userRepository.findByEmail(loginRequest.getEmail());
-
-        // Vérification de l'utilisateur et du mot de passe
         if (user == null || !user.getPassword().equals(loginRequest.getPassword())) {
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("error", "Invalid email or password");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .header("Content-Type", "application/json")
-                    .body(errorResponse);
+                    .body(Map.of("error", "Invalid email or password"));
         }
 
-        // Création de la réponse en cas de succès
         Map<String, String> response = new HashMap<>();
         response.put("role", user.getRole());
-        response.put("email", user.getEmail()); // Ajouter l'email si nécessaire
-        response.put("nomComplet", user.getNomComplet()); // Ajouter le nom complet si utile
-        System.out.println("Response JSON: " + response);
+        response.put("email", user.getEmail());
+        response.put("nomComplet", user.getNomComplet());
+        response.put("numTel",user.getNumTel());
 
-        return ResponseEntity.ok()
-                .header("Content-Type", "application/json")
-                .body(response);
+        return ResponseEntity.ok(response);
     }
 
-    // Endpoint pour mettre à jour un utilisateur
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User updatedUser) {
-        // Vérifiez si l'utilisateur existe
         User existingUser = userRepository.findByEmail(updatedUser.getEmail());
         if (existingUser == null) {
-            return ResponseEntity.notFound().build(); // Retourne 404 si l'utilisateur n'existe pas
+            return ResponseEntity.notFound().build();
         }
 
-        // Mettre à jour les champs nécessaires
         existingUser.setNomComplet(updatedUser.getNomComplet());
         existingUser.setNumTel(updatedUser.getNumTel());
         if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
             existingUser.setPassword(updatedUser.getPassword());
         }
 
-        // Sauvegarder les changements
         User savedUser = userRepository.save(existingUser);
-
         return ResponseEntity.ok(savedUser);
     }
-
 }

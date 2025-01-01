@@ -52,4 +52,10 @@ export class UserService {
   updateUtilisateur(user: Utilisateur): Observable<Utilisateur> {
     return this.http.put<Utilisateur>(`http://localhost:8082/api/users/update`, user);
   }
+  validateOldPassword(email: string, oldPassword: string): Observable<boolean> {
+    return this.http.post<boolean>(`http://localhost:8082/api/users/validate-password`, { email, oldPassword });
+  }
+  sendPasswordRecoveryEmail(email: string): Observable<void> {
+    return this.http.post<void>(`http://localhost:8082/api/users/recover-password`, { email });
+  }
 }
