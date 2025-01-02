@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TestAnalysisService {
-  private readonly BASE_URL = 'http://localhost:5678';
+  private readonly BASE_URL = 'http://localhost:5678/testanalysis';
 
   constructor(private http: HttpClient) {}
 

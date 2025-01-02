@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gateway-service" />
       </profile>
       <profile name="Annotation profile for analysis-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -16,9 +15,9 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
+        <module name="examen-service" />
         <module name="analysis-service" />
-        <module name="laboratory-service" />
-        <module name="contact_laboratory-service" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -26,8 +25,6 @@
       <module name="analysis-service" target="19" />
       <module name="config-service" target="19" />
       <module name="contact_laboratory-service" target="19" />
-      <module name="dossier-service" target="19" />
-      <module name="epreuve-service" target="19" />
       <module name="examen-service" target="19" />
       <module name="gateway-service" target="19" />
       <module name="laboratory-service" target="19" />
@@ -40,8 +37,6 @@
       <module name="analysis-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="contact_laboratory-service" options="-parameters" />
-      <module name="dossier-service" options="-parameters" />
-      <module name="epreuve-service" options="-parameters" />
       <module name="examen-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="laboratory-service" options="-parameters" />

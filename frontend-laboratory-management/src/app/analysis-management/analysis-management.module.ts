@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AnalysisListComponent } from './components/analysis-list/analysis-list.component';
 import { AnalysisManagementRoutingModule } from './analysis-management-routing.module';
+import { CreateAnalysisComponent } from './components/create-analysis/create-analysis.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AnalysisManagementRoutingModule } from './analysis-management-routing.m
     CommonModule,
     FormsModule,
     RouterModule,
+    CreateAnalysisComponent,
     AnalysisManagementRoutingModule,
   ],
   providers: [],

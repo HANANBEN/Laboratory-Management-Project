@@ -14,6 +14,14 @@ const routes: Routes = [
     path: 'adress', // Corrected from 'adress' to 'address'
     loadChildren: () => import('./adress-management/adress-management.module').then(m => m.AdressManagementModule),
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule),
+  },
+  {
+    path: 'analyses', // Nouvelle route pour analysis-management
+    loadChildren: () => import('./analysis-management/analysis-management.module').then(m => m.AnalysisManagementModule),
+  },
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import { Analysis } from '../../models/Analysis.model';
   providedIn: 'root',
 })
 export class AnalysisService {
-  private readonly BASE_URL = 'http://localhost:5678'; // Base URL for API
+  private readonly BASE_URL = 'http://localhost:5678/analysis'; // Base URL for API
 
   constructor(private http: HttpClient) {}
 
@@ -43,6 +43,21 @@ export class AnalysisService {
       catchError((error) => {
         console.error(`Error fetching analysis with ID ${idAnalysis}:`, error);
         return throwError(() => new Error('Failed to fetch analysis details'));
+      })
+    );
+  }
+
+  /**
+   * Creates a new analysis.
+   * @param analysis The Analysis object to be created
+   * @returns An Observable of the created Analysis object
+   */
+  createAnalysis(analysis: Analysis): Observable<Analysis> {
+    const url = `${this.BASE_URL}/analyses`;
+    return this.http.post<Analysis>(url, analysis).pipe(
+      catchError((error) => {
+        console.error('Error creating analysis:', error);
+        return throwError(() => new Error('Failed to create analysis'));
       })
     );
   }
