@@ -78,4 +78,39 @@ public class ContactLaboratory {
     public void setEmail(String email) { this.email = email; }
     public void setLaboratory(Laboratory laboratory) { this.laboratory = laboratory; }
     public void setAdress(Adress adress) { this.adress = adress; }
+
+    public ContactLaboratory(Long fkIdLaboratory, Long fkIdAdress, String numTel, String fax, String email) {
+        this.fkIdLaboratory = fkIdLaboratory;
+
+        this.fkIdAdress = fkIdAdress;
+
+        this.numTel = numTel;
+        this.fax = fax;
+        this.email = email;
+    }
+
+    public ContactLaboratory(Long id, String numTel, String fax, String email) {
+        this.id = id;
+
+        this.fkIdAdress = fkIdAdress;
+
+        this.numTel = numTel;
+        this.fax = fax;
+        this.email = email;
+    }
+
+    public ContactLaboratory(Long id, Long fkIdLaboratory, Laboratory laboratory, Long fkIdAdress, Adress adress, String numTel, String fax, String email) {
+        this.id = id;
+        this.fkIdLaboratory = fkIdLaboratory;
+        this.laboratory = laboratory;
+        this.fkIdAdress = fkIdAdress;
+        this.adress = adress;
+        this.numTel = numTel;
+        this.fax = fax;
+        this.email = email;
+    }
+    public ContactLaboratory() {
+    }
+
+
 }

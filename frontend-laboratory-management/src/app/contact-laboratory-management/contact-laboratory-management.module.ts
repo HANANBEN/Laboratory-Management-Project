@@ -13,9 +13,9 @@ import { ListAllContactLaboComponent } from './components/list-all-contact-labo/
   declarations: [
 
 
-    EditContactLaboComponent,
 
-        ListAllContactLaboComponent,
+
+
 
 
   ],
@@ -24,7 +24,9 @@ import { ListAllContactLaboComponent } from './components/list-all-contact-labo/
     ContactLaboratoryManagementRoutingModule,
     ListContactLaboComponent,
     AddContactLaboComponent,
-    CreateContactLaboComponent
+    CreateContactLaboComponent,
+    ListAllContactLaboComponent,
+    EditContactLaboComponent,
   ]
 })
 export class ContactLaboratoryManagementModule { }

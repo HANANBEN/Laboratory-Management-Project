@@ -7,6 +7,8 @@ public interface AdressProjection {
      Long getId();
      String getNumVoie() ;
      String getNomVoie() ;
+
+     String getNumVoie();
      Long getCodePostal();
      String getVille();
      String getCommune();
