@@ -59,7 +59,7 @@ export class ListContactLaboComponent implements OnInit {
   }
 
   navigateToEdit(contactId: number): void {
-    this.router.navigate([`/edit-contact/${contactId}`]);
+    this.router.navigate(['/contact-laboratories/edit-contact-labo', contactId]);
   }
 
   /*deleteContact(contactId: number): void {

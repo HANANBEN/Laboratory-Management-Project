@@ -72,9 +72,9 @@ export class ContactLaboratoryService {
 
 
   // Method to update a contact's fkIdLaboratory
-  updateContactLaboratory(id: number, contact: ContactLaboratory): Observable<ContactLaboratory> {
+  updateContactLaboratory(id: number, contact: ContactLaboratoryDTO): Observable<ContactLaboratoryDTO> {
     const url = `${this.BASE_URL}/${id}`;
-    return this.http.put<ContactLaboratory>(url, contact).pipe(
+    return this.http.put<ContactLaboratoryDTO>(url, contact).pipe(
       catchError((error) => {
         console.error('Error updating contact laboratory:', error);
         return throwError(() => new Error('Failed to update contact laboratory'));
@@ -101,5 +101,15 @@ export class ContactLaboratoryService {
       })
     );
   }
+  getContactLaboratoryById(id: number): Observable<ContactLaboratory> {
+    const url = `${this.BASE_URL}/${id}`;
+    return this.http.get<ContactLaboratory>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching contact laboratory by ID:', error);
+        return throwError(() => new Error('Failed to fetch contact laboratory by ID'));
+      })
+    );
+  }
+
 
 }

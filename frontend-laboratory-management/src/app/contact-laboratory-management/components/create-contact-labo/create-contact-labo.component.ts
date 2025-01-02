@@ -72,6 +72,7 @@ export class CreateContactLaboComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['/contact-laboratories']);
+    this.router.navigate(['/contact-laboratories/list-all-contacts']);
   }
+
 }

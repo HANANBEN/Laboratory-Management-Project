@@ -34,6 +34,17 @@ public class ContactLaboratoryController {
         return contactLaboratoryRepository.findByFkIdLaboratory(laboratoryId);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ContactLaboratory> getContactLaboratoryById(@PathVariable("id") Long id) {
+        Optional<ContactLaboratory> contactLaboratory = contactLaboratoryRepository.findById(id);
+
+        if (contactLaboratory.isPresent()) {
+            return new ResponseEntity<>(contactLaboratory.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     // Fetch contact laboratories by laboratory ID, including null values
     @GetMapping("/byLaboratoryIdIncludingNull/{laboratoryId}")
     public List<ContactLaboratory> getByLaboratoryIdIncludingNull(@PathVariable Long laboratoryId) {
@@ -143,6 +154,8 @@ public class ContactLaboratoryController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
 
 
 }

@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ContactLaboratoryService } from '../../../services/contactLaboratory-service/contact-laboratory.service';
 import { ContactLaboratory } from '../../../models/ConatctLaboratory.model';
-import {AdressService} from '../../../services/adress-service/adress-service.service';
-import {LaboratoireService} from '../../../services/labo-service/laboratoire.service';
+import { AdressService } from '../../../services/adress-service/adress-service.service';
+import { LaboratoireService } from '../../../services/labo-service/laboratoire.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-all-contact-labo',
@@ -15,50 +16,59 @@ import {LaboratoireService} from '../../../services/labo-service/laboratoire.ser
 })
 export class ListAllContactLaboComponent implements OnInit {
   contactLaboratories: ContactLaboratory[] = [];
+  allContactLaboratories: ContactLaboratory[] = []; // Store original data
   filterText: string = '';
   filterEmail: string = '';
 
-  constructor(private contactService: ContactLaboratoryService , private addressService: AdressService, private laboratoryService : LaboratoireService ) {}
+  constructor(
+    private contactService: ContactLaboratoryService,
+    private addressService: AdressService,
+    private laboratoryService: LaboratoireService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadAllContacts();
   }
+
   loadAllContacts(): void {
     this.contactService.listAllContacts().subscribe(
       (contacts) => {
-        this.contactLaboratories = contacts.map((contact) => {
-          // Fetch Laboratory
+        console.log('Loaded Contacts:', contacts); // Debug loaded data
+        this.allContactLaboratories = contacts.map((contact) => {
           if (contact.fkIdLaboratory) {
             this.laboratoryService.getLaboratoireById(contact.fkIdLaboratory).subscribe(
               (laboratory) => {
-                contact.laboratory = laboratory; // Assign fetched laboratory
+                contact.laboratory = laboratory;
               },
               (error) => {
                 console.error('Error fetching laboratory:', error);
-                (contact.laboratory as any) = null; // Temporarily assert type
+                (contact.laboratory as any) = null;
               }
             );
           } else {
-            (contact.laboratory as any) = null; // Assign null directly
+            (contact.laboratory as any) = null;
           }
 
-          // Fetch Address
           if (contact.fkIdAdress) {
             this.addressService.getAdressById(contact.fkIdAdress).subscribe(
               (address) => {
-                contact.adress = address; // Assign fetched address
+                contact.adress = address;
               },
               (error) => {
                 console.error('Error fetching address:', error);
-                (contact.adress as any) = null; // Temporarily assert type
+                (contact.adress as any) = null;
               }
             );
           } else {
-            (contact.adress as any) = null; // Assign null directly
+            (contact.adress as any) = null;
           }
 
-          return contact; // Return updated contact
+          return contact;
         });
+
+        this.contactLaboratories = [...this.allContactLaboratories];
+        console.log('Contact Laboratories for Display:', this.contactLaboratories); // Debug display data
       },
       (error) => {
         console.error('Error fetching contacts:', error);
@@ -66,13 +76,34 @@ export class ListAllContactLaboComponent implements OnInit {
     );
   }
 
-
-
   search(): void {
-    this.contactLaboratories = this.contactLaboratories.filter((contact) => {
-      const matchesName = contact.laboratory?.nom?.toLowerCase().includes(this.filterText.toLowerCase());
-      const matchesEmail = contact.email?.toLowerCase().includes(this.filterEmail.toLowerCase());
+    this.contactLaboratories = this.allContactLaboratories.filter((contact) => {
+      // Convert filters to lowercase for case-insensitive comparison
+      const filterTextLower = this.filterText.toLowerCase();
+      const filterEmailLower = this.filterEmail.toLowerCase();
+
+      // Check if laboratory name matches filterText
+      const matchesName = !this.filterText ||
+        (contact.laboratory?.nom?.toLowerCase() || '').includes(filterTextLower);
+
+      // Check if email matches filterEmail
+      const matchesEmail = !this.filterEmail ||
+        (contact.email?.toLowerCase() || '').includes(filterEmailLower);
+
+      // Return true if either condition matches
       return matchesName || matchesEmail;
     });
+  }
+
+
+  createContactLaboratory(): void {
+    this.router.navigate(['/contact-laboratories/create-contact-labo']);
+  }
+
+  editContact(contactId: number): void {
+    this.router.navigate(['/contact-laboratories/edit-contact-labo', contactId]);
+  }
+  deleteContact(contactId: number): void {
+    this.router.navigate(['/contact-laboratories/delete']);
   }
 }
