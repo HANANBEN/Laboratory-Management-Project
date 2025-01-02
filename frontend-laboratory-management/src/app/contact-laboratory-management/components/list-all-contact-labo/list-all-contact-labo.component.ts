@@ -25,7 +25,8 @@ export class ListAllContactLaboComponent implements OnInit {
     private addressService: AdressService,
     private laboratoryService: LaboratoireService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadAllContacts();
@@ -103,7 +104,24 @@ export class ListAllContactLaboComponent implements OnInit {
   editContact(contactId: number): void {
     this.router.navigate(['/contact-laboratories/edit-contact-labo', contactId]);
   }
+
   deleteContact(contactId: number): void {
-    this.router.navigate(['/contact-laboratories/delete']);
+    if (confirm('Are you sure you want to delete this contact?')) {
+      this.contactService.deleteContact(contactId).subscribe({
+        next: () => {
+          // Remove the deleted contact from the local list
+          this.contactLaboratories = this.contactLaboratories.filter(contact => contact.id !== contactId);
+          alert('Contact deleted successfully!');
+        },
+        error: (err) => {
+          console.error('Error deleting contact:', err);
+          alert('Failed to delete contact. Please try again.');
+        }
+      });
+    }
   }
+
+
+
+
 }

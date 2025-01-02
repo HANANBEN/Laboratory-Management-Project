@@ -155,6 +155,16 @@ public class ContactLaboratoryController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+        Optional<ContactLaboratory> contactLaboratory = contactLaboratoryRepository.findById(id);
+        if (contactLaboratory.isPresent()) {
+            contactLaboratoryRepository.deleteById(id); // Deleting the contact
+            return ResponseEntity.noContent().build(); // Returns 204 No Content
+        } else {
+            return ResponseEntity.notFound().build(); // Returns 404 Not Found if contact doesn't exist
+        }
+    }
 
 
 

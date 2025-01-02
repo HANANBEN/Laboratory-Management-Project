@@ -110,6 +110,16 @@ export class ContactLaboratoryService {
       })
     );
   }
+  deleteContact(contactId: number): Observable<void> {
+    const url = `${this.BASE_URL}/${contactId}`;
+    return this.http.delete<void>(url).pipe(
+      catchError((error) => {
+        console.error('Error deleting contact:', error);
+        return throwError(() => new Error('Failed to delete contact'));
+      })
+    );
+  }
+
 
 
 }
