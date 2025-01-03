@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/analysis-service/analysis-service.iml" filepath="$PROJECT_DIR$/analysis-service/analysis-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/config-service/config-service.iml" filepath="$PROJECT_DIR$/config-service/config-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/contact_laboratory-service/contact_laboratory-service.iml" filepath="$PROJECT_DIR$/contact_laboratory-service/contact_laboratory-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dossier-service/dossier-service.iml" filepath="$PROJECT_DIR$/dossier-service/dossier-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/examen-service/examen-service.iml" filepath="$PROJECT_DIR$/examen-service/examen-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/gateway-service/gateway-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/laboratory-service/laboratory-service.iml" filepath="$PROJECT_DIR$/laboratory-service/laboratory-service.iml" />
