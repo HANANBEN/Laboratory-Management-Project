@@ -69,12 +69,17 @@ export class AdressEditComponent implements OnInit {
           this.snackBar.open('Address updated successfully!', 'Close', {
             duration: 3000,
           });
-          this.router.navigate(['/addresses/list']);
+          this.router.navigate(['/adress/list']);
         },
         (error: any) => {
           console.error('Error updating address:', error);
         }
       );
     }
+
+  }
+  navigateToList(){
+
+    this.router.navigate(["/adress/list"])
   }
 }

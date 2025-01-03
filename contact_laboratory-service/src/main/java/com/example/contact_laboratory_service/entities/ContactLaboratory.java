@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "contact_laboratoire")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class ContactLaboratory {
     @Id

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
 <section class="vh-100" style="background-color: #f8f9fa;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -5,6 +7,11 @@
         <div class="card rounded-3 shadow">
           <div class="card-body p-4">
             <h4 class="text-center my-4 pb-3 text-primary">Create Address</h4>
+            <div class="d-flex justify-content-between mb-3">
+              <button class="btn btn-secondary" (click)="navigateToList()">
+                <i class="fas fa-arrow-left"></i> Back to List of adresses
+              </button>
+            </div>
             <form (ngSubmit)="createAdress()" #adressForm="ngForm">
               <!-- Numéro de Voie -->
               <div class="mb-3">

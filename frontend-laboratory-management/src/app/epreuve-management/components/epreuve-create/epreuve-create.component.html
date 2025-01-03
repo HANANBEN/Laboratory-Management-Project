@@ -1,0 +1,90 @@
+<div class="container py-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow rounded-3">
+        <div class="card-body p-4">
+          <h4 class="text-center my-4 text-primary">Create New Epreuve</h4>
+
+          <form (ngSubmit)="saveEpreuve()">
+            <!-- Epreuve Name -->
+            <div class="form-group mb-4">
+              <label for="nom" class="form-label">Epreuve Name:</label>
+              <input
+                type="text"
+                id="nom"
+                [(ngModel)]="epreuve.nom"
+                name="nom"
+                class="form-control"
+                required
+                placeholder="Enter Epreuve Name"
+              />
+              <div *ngIf="!epreuve.nom" class="text-danger">
+                Name is required.
+              </div>
+            </div>
+
+            <!-- Analysis ID -->
+            <div class="form-group mb-4">
+              <label for="fkIdAnalyse" class="form-label">Assign Analysis:</label>
+              <select
+                id="fkIdAnalyse"
+                [(ngModel)]="epreuve.fkIdAnalyse"
+                name="fkIdAnalyse"
+                class="form-select"
+                required
+              >
+                <option value="" disabled selected>Select an Analysis</option>
+                <option *ngFor="let analysis of analyses" [value]="analysis.id">
+                  {{ analysis.nom }}
+                </option>
+              </select>
+              <div *ngIf="!epreuve.fkIdAnalyse" class="text-danger">
+                Please select an analysis.
+              </div>
+            </div>
+
+            <!-- Method -->
+            <div class="form-group mb-4">
+              <label for="method" class="form-label">Method:</label>
+              <input
+                type="text"
+                id="method"
+                [(ngModel)]="epreuve.method"
+                name="method"
+                class="form-control"
+                placeholder="Enter Method"
+              />
+            </div>
+
+            <!-- Measurement Criteria -->
+            <div class="form-group mb-4">
+              <label for="criteria" class="form-label">Measurement Criteria:</label>
+              <textarea
+                id="criteria"
+                [(ngModel)]="epreuve.criteria"
+                name="criteria"
+                class="form-control"
+                rows="3"
+                placeholder="Enter Measurement Criteria"
+              ></textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-center flex-wrap gap-2">
+              <button type="submit" class="btn btn-primary shadow-sm">
+                <i class="fas fa-save"></i> Save Epreuve
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary shadow-sm"
+                (click)="cancel()"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

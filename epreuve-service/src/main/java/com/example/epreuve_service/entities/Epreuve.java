@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "epreuve")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Epreuve {
 
@@ -34,5 +33,37 @@ public class Epreuve {
     }
 
     public Epreuve() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getFkIdAnalyse() {
+        return fkIdAnalyse;
+    }
+
+    public void setFkIdAnalyse(Long fkIdAnalyse) {
+        this.fkIdAnalyse = fkIdAnalyse;
+    }
+
+    public Analysis getAnalysis() {
+        return analysis;
+    }
+
+    public void setAnalysis(Analysis analysis) {
+        this.analysis = analysis;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }
