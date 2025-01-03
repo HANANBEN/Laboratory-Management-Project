@@ -1,7 +1,7 @@
 package com.example.analysis_service.entities;
 
 import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "testAnalyse")
 public class TestAnalysis {
@@ -11,8 +11,8 @@ public class TestAnalysis {
 
     @ManyToOne
     @JoinColumn(name = "fkIdAnalyse", referencedColumnName = "id")
+    @JsonBackReference
     private Analysis analysis;
-
     private String nomTest;
 
     private String sousEpreuve;
@@ -105,4 +105,5 @@ public class TestAnalysis {
     public void setDetails(String details) {
         this.details = details;
     }
+
 }

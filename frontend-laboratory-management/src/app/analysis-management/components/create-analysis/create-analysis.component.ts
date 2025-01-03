@@ -4,11 +4,14 @@ import { Analysis } from '../../../models/Analysis.model';
 import { TestAnalysis } from '../../../models/TestAnalysis.model';
 import { AnalysisService } from '../../../services/analysis-service/analysis.service'; // Service pour gérer les requêtes liées aux analyses
 import { LaboratoireService } from '../../../services/labo-service/laboratoire.service'; // Service pour récupérer les laboratoires
-import { TestAnalysisService } from '../../../services/testAnalysis-service/testAnalysis.service'; // Service pour récupérer les tests
+import { TestAnalysisService } from '../../../services/testAnalysis-service/testAnalysis.service';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms'; // Service pour récupérer les tests
 
 @Component({
   selector: 'app-create-analysis',
   standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './create-analysis.component.html',
   styleUrls: ['./create-analysis.component.css'],
 })
