@@ -47,6 +47,7 @@ public class ContactLaboratoryServiceApplication {
 				contactLaboratory.setFax("fax" + i);
 				contactLaboratory.setEmail("email" + i);
 				contactLaboratory.setNumTel("0958" + i);
+				contactLaboratory.setFkIdLaboratory(laboratories.get(random.nextInt(laboratories.size())).getId());
 				contactLaboratory.setFkIdAdress(adresses.get(random.nextInt(adresses.size())).getId());
 				contactrep.save(contactLaboratory);
 			}

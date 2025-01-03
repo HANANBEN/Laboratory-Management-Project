@@ -7,3 +7,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface EpreuveRepository extends JpaRepository<Epreuve, Long> {
 }
+
