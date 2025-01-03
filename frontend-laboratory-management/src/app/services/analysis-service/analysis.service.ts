@@ -8,7 +8,7 @@ import { Analysis } from '../../models/Analysis.model';
   providedIn: 'root',
 })
 export class AnalysisService {
-  private readonly BASE_URL = 'http://localhost:5678/analysis'; // Base URL for API
+  private readonly BASE_URL = 'http://localhost:5678/analyses'; // Base URL for API
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +21,7 @@ export class AnalysisService {
     const url = `${this.BASE_URL}/analyses/search/byLaboratoryId`;
     const params = new HttpParams()
       .set('laboratoryId', idLaboratory.toString())
-      .set('projection', 'fullAnalysis'); // Adjust projection as needed
+      .set('projection', 'extendedAnalysis'); // Adjust projection as needed
 
     return this.http.get<any>(url, { params }).pipe(
       map((response) => response._embedded?.analyses || []), // Extract data from _embedded field
@@ -61,4 +61,23 @@ export class AnalysisService {
       })
     );
   }
+  deleteAnalysis(id: number) {
+    return this.http.delete(`${this.BASE_URL}/analyses/${id}`);
+  }
+  /**
+   * Updates an existing analysis by its ID.
+   * @param idAnalysis The ID of the analysis to be updated
+   * @param analysis The updated Analysis object
+   * @returns An Observable of the updated Analysis object
+   */
+  updateAnalysis(idAnalysis: number, analysis: Analysis): Observable<Analysis> {
+    const url = `${this.BASE_URL}/analyses/${idAnalysis}`;
+    return this.http.put<Analysis>(url, analysis).pipe(
+      catchError((error) => {
+        console.error(`Error updating analysis with ID ${idAnalysis}:`, error);
+        return throwError(() => new Error('Failed to update analysis'));
+      })
+    );
+  }
+
 }

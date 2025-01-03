@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AnalysisService } from '../../../services/analysis-service';
+import { AnalysisService } from '../../../services/analysis-service/analysis.service';
 import { Analysis } from '../../../models/Analysis.model';
+import { Laboratoire } from '../../../models/laboratoire.model'; // Import du modèle Laboratoire
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-analysis',
   standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './edit-analysis.component.html',
   styleUrls: ['./edit-analysis.component.css'],
 })
@@ -17,7 +21,8 @@ export class EditAnalysisComponent implements OnInit {
     description: '',
     testAnalysis: [],
   };
-  laboratories = []; // Liste des laboratoires à charger depuis le service
+
+  laboratories: Laboratoire[] = []; // Spécification du type correct
 
   constructor(
     private analysisService: AnalysisService,
@@ -35,37 +40,40 @@ export class EditAnalysisComponent implements OnInit {
 
   loadAnalysis(id: number): void {
     this.analysisService.getAnalysisById(id).subscribe({
-      next: (data) => {
+      next: (data: Analysis) => {
         this.analysis = data;
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('Error loading analysis:', err);
       },
     });
   }
 
+  updateAnalysis(): void {
+    if (this.analysis.id) {
+      this.analysisService.updateAnalysis(this.analysis.id, this.analysis).subscribe({
+        next: (updatedAnalysis) => {
+          console.log('Analysis updated successfully:', updatedAnalysis);
+          // Redirection après succès
+          this.router.navigate(['/analyses/list']);
+        },
+        error: (error) => {
+          console.error('Failed to update analysis:', error.message || error);
+          alert('An error occurred while updating the analysis. Please try again.');
+        },
+      });
+    } else {
+      console.warn('Analysis ID is missing, cannot update.');
+      alert('The analysis cannot be updated because it does not have a valid ID.');
+    }
+  }
+
   loadLaboratories(): void {
     // Remplacer par l'appel à un service pour charger les laboratoires
     this.laboratories = [
-      { id: 1, nom: 'Lab A' },
-      { id: 2, nom: 'Lab B' },
+      { id: 1, nom: 'Lab A', logo: '', nrc: '12345', isActive: true },
+      { id: 2, nom: 'Lab B', logo: '', nrc: '67890', isActive: true },
     ];
-  }
-
-  updateAnalysis(): void {
-    this.analysisService.updateAnalysis(this.analysis.id, this.analysis).subscribe({
-      next: () => {
-        console.log('Analysis updated successfully');
-        this.router.navigate(['/analyses']);
-      },
-      error: (err) => {
-        console.error('Error updating analysis:', err);
-      },
-    });
-  }
-
-  addTestAnalysis(): void {
-    this.analysis.testAnalysis.push({ id: 0, name: '' }); // Ajouter un test vide
   }
 
   cancelEdit(): void {

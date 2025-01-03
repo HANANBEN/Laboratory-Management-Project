@@ -57,14 +57,13 @@
                     type="text"
                     id="testAnalysis-{{ i }}"
                     class="form-control border-primary shadow-sm"
-                    [(ngModel)]="analysis.testAnalysis[i].name"
+                    [(ngModel)]="analysis.testAnalysis[i].nomTest"
                     name="testAnalysis-{{ i }}"
                   />
                 </div>
                 <button
                   type="button"
                   class="btn btn-sm btn-success shadow-sm mt-2"
-                  (click)="addTestAnalysis()"
                 >
                   Add Test Analysis
                 </button>

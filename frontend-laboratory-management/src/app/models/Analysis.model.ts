@@ -1,4 +1,4 @@
-import { TestAnalysis } from './testAnalysis.model';
+import { TestAnalysis } from './TestAnalysis.model';
 
 export interface Analysis {
   id: number; // Identifiant de l'analyse
