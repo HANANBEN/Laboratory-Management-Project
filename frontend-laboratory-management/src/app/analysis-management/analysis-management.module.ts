@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AnalysisListComponent } from './components/analysis-list/analysis-list.component';
 import { AnalysisManagementRoutingModule } from './analysis-management-routing.module';
 import { CreateAnalysisComponent } from './components/create-analysis/create-analysis.component';
-
+import { EditAnalysisComponent } from './components/edit-analysis/edit-analysis.component';
 @NgModule({
   declarations: [
 
@@ -17,6 +17,7 @@ import { CreateAnalysisComponent } from './components/create-analysis/create-ana
     FormsModule,
     RouterModule,
     CreateAnalysisComponent,
+    EditAnalysisComponent,
     AnalysisManagementRoutingModule,
   ],
   providers: [],

@@ -6,7 +6,7 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name="laboratory-analysis-service")
+@FeignClient(name="laboratory-service")
 
 public interface LaboratoryAnalysisService {
     @GetMapping("/laboratories/{id}?projection=fullLaboratory")

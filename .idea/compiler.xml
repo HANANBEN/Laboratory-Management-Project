@@ -8,16 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for analysis-service" enabled="true">
+      <profile name="Annotation profile for laboratory-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
-        <module name="examen-service" />
+        <module name="laboratory-service" />
         <module name="analysis-service" />
         <module name="user-service" />
+        <module name="examen-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

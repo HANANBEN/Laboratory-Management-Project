@@ -10,17 +10,22 @@ public interface TestAnalysisProjection {
 
     String getNomTest(); // Name of the Test
 
-    String getSousEpreuve(); // Sub-test name
+    String getSousEpreuve(); // Subtest description
 
-    Double getIntervalMinDeReference(); // Minimum reference interval
+    Double getIntervalMinDeReference(); // Min reference interval
 
-    Double getIntervalMaxDeReference(); // Maximum reference interval
+    Double getIntervalMaxDeReference(); // Max reference interval
 
-    String getUniteDeReference(); // Unit of reference
+    String getUniteDeReference(); // Reference unit
 
-    String getDetails(); // Additional details
+    String getDetails(); // Details of the test
 
-    @Value("#{target.analysis != null ? target.analysis : null}")
-    Object getAnalysisDetails(); // Includes parent Analysis details
+    @Value("#{target.analysis != null ? target.analysis.id : null}")
+    Long getAnalysisId(); // Includes the associated Analysis ID
+
+    @Value("#{target.analysis != null ? target.analysis.nom : null}")
+    String getAnalysisNom(); // Includes the associated Analysis name
+
+    @Value("#{target.analysis != null ? target.analysis.description : null}")
+    String getAnalysisDescription(); // Includes the associated Analysis description
 }
-
