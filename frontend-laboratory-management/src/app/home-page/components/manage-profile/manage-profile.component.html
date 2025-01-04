@@ -2,43 +2,102 @@
   <!-- Manage Profile Form -->
   <div class="form-container">
     <h2>Manage Profile</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
       <div class="form-group">
-        <label for="nomComplet">Full Name:</label>
-        <input type="text" id="nomComplet" [(ngModel)]="nomComplet" name="nomComplet" required />
+        <label for="nomComplet">Full Name: <span class="required">*</span></label>
+        <input
+          type="text"
+          id="nomComplet"
+          [(ngModel)]="nomComplet"
+          name="nomComplet"
+          class="form-control"
+          placeholder="Enter your full name"
+          required
+        />
       </div>
 
       <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" [(ngModel)]="email" name="email" readonly />
+        <label for="email">Email: <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          class="form-control"
+          readonly
+        />
       </div>
 
       <div class="form-group">
-        <label for="oldPassword">Old Password:</label>
-        <input type="password" id="oldPassword" [(ngModel)]="oldPassword" name="oldPassword" required />
+        <label for="oldPassword">Old Password: <span class="required">*</span></label>
+        <input
+          type="password"
+          id="oldPassword"
+          [(ngModel)]="oldPassword"
+          name="oldPassword"
+          class="form-control"
+          placeholder="Enter old password"
+          required
+        />
       </div>
 
       <div class="form-group">
-        <label for="password">New Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required />
+        <label for="password">New Password: <span class="required">*</span></label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          class="form-control"
+          placeholder="Enter a new password"
+          required
+        />
       </div>
 
       <div class="form-group">
-        <label for="retypeNewPassword">Retype New Password:</label>
-        <input type="password" id="retypeNewPassword" [(ngModel)]="retypeNewPassword" name="retypeNewPassword" required />
+        <label for="retypeNewPassword">Confirm New Password: <span class="required">*</span></label>
+        <input
+          type="password"
+          id="retypeNewPassword"
+          [(ngModel)]="retypeNewPassword"
+          name="retypeNewPassword"
+          class="form-control"
+          placeholder="Confirm new password"
+          required
+        />
       </div>
 
       <div class="form-group">
-        <label for="numTel">Phone Number:</label>
-        <input type="tel" id="numTel" [(ngModel)]="numTel" name="numTel" required />
+        <label for="numTel">Phone Number: <span class="required">*</span></label>
+        <input
+          type="tel"
+          id="numTel"
+          [(ngModel)]="numTel"
+          name="numTel"
+          class="form-control"
+          placeholder="Enter your phone number"
+          required
+        />
       </div>
 
-      <button type="submit">Save Changes</button>
-      <button type="button" (click)="sendPasswordRecoveryEmail()">Forgot Password?</button>
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="!profileForm.valid"
+      >
+        <i class="fas fa-save"></i> Save Changes
+      </button>
+      <button
+        type="button"
+        (click)="sendPasswordRecoveryEmail()"
+        class="secondary-button"
+      >
+        <i class="fas fa-key"></i> Forgot Password?
+      </button>
     </form>
 
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
   </div>
-
+</div>

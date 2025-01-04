@@ -1,4 +1,5 @@
 package com.example.user_service.jms;
+
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +39,7 @@ public class EmailListener {
 
             // Préparer le message
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("fakriaya2002@gmail.com"));
+            message.setFrom(new InternetAddress("fakriaya2002@gmail.com", "FabenLab Services")); // Nom d'affichage personnalisé
             message.setRecipients(
                     Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject(subject);

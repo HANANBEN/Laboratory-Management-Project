@@ -34,6 +34,11 @@ h2 {
   color: #333;
 }
 
+.required {
+  color: red;
+  font-weight: bold;
+}
+
 .form-group input {
   width: 100%;
   padding: 10px;
@@ -66,7 +71,16 @@ h2 {
 }
 
 .form-container button:hover {
-  background-color: #5A4780;
+  background-color: #5a4780;
+}
+
+.secondary-button {
+  background-color: #96d4ca;
+  margin-top: 10px;
+}
+
+.secondary-button:hover {
+  background-color: #5a4780;
 }
 
 .error-message {
@@ -75,29 +89,14 @@ h2 {
   margin-top: 15px;
   text-align: center;
 }
-
-/* Reset Password Section */
-.reset-password-form {
-  margin-top: 40px;
+/* Styles pour les icônes */
+button i {
+  margin-right: 8px; /* Espace entre l'icône et le texte */
+  font-size: 1.2rem;  /* Taille de l'icône */
 }
 
-.reset-password-form h2 {
-  color: #96d4ca;
-}
-
-.reset-password-form .form-group input {
-  background-color: #ffffff;
-  border-color: #ddd;
-}
-
-.reset-password-form .form-group input:focus {
-  border-color: #96d4ca;
-}
-
-.reset-password-form button {
-  background-color: #96d4ca;
-}
-
-.reset-password-form button:hover {
-  background-color: #5A4780;
+.submit-button, .secondary-button {
+  display: flex;
+  align-items: center;  /* Centrer l'icône et le texte verticalement */
+  justify-content: center;
 }
