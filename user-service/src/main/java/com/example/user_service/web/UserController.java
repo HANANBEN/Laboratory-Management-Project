@@ -58,16 +58,24 @@ public class UserController {
                     .body(Map.of("error", "User with this email does not exist"));
         }
 
-        // Envoyer un message JMS pour l'envoi de l'email
-        String subject = "Password Recovery Request";
-        String body = "We have received a password recovery request for your account. Please follow the instructions to reset your password.";
+        // Génération d'un code aléatoire
+        int verificationCode = (int) (Math.random() * 900000) + 100000; // Code à 6 chiffres
 
-        // Envoi de l'email via JMS
+        // Contenu de l'email
+        String subject = "Password Recovery Code";
+        String body = "Your password recovery code is: " + verificationCode +
+                ". Please use this code to reset your password. This code is valid for 15 minutes.";
+
+        // Envoi de l'email
         messageSender.sendEmailMessage(email, subject, body);
 
-        // Retourner une réponse de succès
-        return ResponseEntity.ok(Map.of("message", "Password recovery email sent successfully"));
+        // Retourner une réponse contenant le code pour le frontend (utile pour du dev/test local)
+        return ResponseEntity.ok(Map.of(
+                "message", "Password recovery email sent successfully",
+                "verificationCode", verificationCode // Supprimez cela en prod pour éviter l'exposition
+        ));
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail());
