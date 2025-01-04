@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for dossier-service" enabled="true">
+      <profile name="Annotation profile for examen-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,9 +18,10 @@
         <module name="dossier-service" />
         <module name="analysis-service" />
         <module name="laboratory-service" />
-        <module name="user-service" />
         <module name="examen-service" />
         <module name="contact_laboratory-service" />
+        <module name="user-service" />
+        <module name="epreuve-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="config-service" target="19" />
       <module name="contact_laboratory-service" target="19" />
       <module name="dossier-service" target="19" />
+      <module name="epreuve-service" target="19" />
       <module name="examen-service" target="19" />
       <module name="gateway-service" target="19" />
       <module name="laboratory-service" target="19" />
@@ -42,6 +44,7 @@
       <module name="config-service" options="-parameters" />
       <module name="contact_laboratory-service" options="-parameters" />
       <module name="dossier-service" options="-parameters" />
+      <module name="epreuve-service" options="-parameters" />
       <module name="examen-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="laboratory-service" options="-parameters" />
