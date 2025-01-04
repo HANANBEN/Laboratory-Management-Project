@@ -13,6 +13,7 @@ export class ResetPasswordComponent {
   resetCode: string = ''; // Code de réinitialisation
   newPassword: string = ''; // Nouveau mot de passe
   errorMessage: string | null = null;
+  retypeNewPassword:string='';
 
   constructor(private userService: UserService, private router: Router) {}
 

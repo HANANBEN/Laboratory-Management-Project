@@ -16,6 +16,10 @@ export class ManageProfileComponent implements OnInit {
   oldPassword: string = ''; // Nouveau champ
   numTel: string = '';
   errorMessage: string | null = null;
+  retypeNewPassword: string='';
+  resetCode: string='';
+  newPassword: string='';
+  retypePassword:String='';
 
   constructor(private userService: UserService, private router: Router) {}
 
