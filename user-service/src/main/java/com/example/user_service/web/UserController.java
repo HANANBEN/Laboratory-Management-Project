@@ -1,6 +1,9 @@
 package com.example.user_service.web;
 
 import com.example.user_service.jms.MessageSender;
+import com.example.user_service.service.ResetCodeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.user_service.repositories.UserRepository;
 import com.example.user_service.entities.User;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,14 +19,18 @@ import java.util.Map;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private final UserRepository userRepository;
-    private final MessageSender messageSender;
-
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    public UserController(UserRepository userRepository, MessageSender messageSender) {
+    private UserRepository userRepository;
+    private final MessageSender messageSender;
+    private final ResetCodeService resetCodeService;
+
+    @Autowired
+    public UserController(UserRepository userRepository, MessageSender messageSender, ResetCodeService resetCodeService) {
         this.userRepository = userRepository;
         this.messageSender = messageSender;
+        this.resetCodeService = resetCodeService;
     }
 
     // Validation de l'ancien mot de passe
@@ -30,56 +38,93 @@ public class UserController {
     public ResponseEntity<?> validateOldPassword(@RequestBody Map<String, String> request) {
         String email = request.get("email");
         String oldPassword = request.get("oldPassword");
+        logger.info("Validating old password for email: {}", email);
 
         User user = userRepository.findByEmail(email);
         if (user == null) {
+            logger.warn("User not found with email: {}", email);
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("error", "User not found"));
         }
 
         if (!user.getPassword().equals(oldPassword)) {
+            logger.warn("Old password incorrect for email: {}", email);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("error", "Old password is incorrect"));
         }
 
+        logger.info("Old password validated successfully for email: {}", email);
         return ResponseEntity.ok(Map.of("message", "Password is valid"));
     }
-
 
     // Envoi d'un email de récupération de mot de passe
     @PostMapping("/recover-password")
     public ResponseEntity<?> recoverPassword(@RequestBody Map<String, String> request) {
         String email = request.get("email");
+        logger.info("Password recovery initiated for email: {}", email);
 
-        // Vérifiez si l'utilisateur existe
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("error", "User with this email does not exist"));
+        if (email == null || email.isEmpty()) {
+            logger.warn("Recover password failed: Email is missing");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Email is required"));
         }
 
-        // Génération d'un code aléatoire
-        int verificationCode = (int) (Math.random() * 900000) + 100000; // Code à 6 chiffres
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            logger.warn("No user found with email: {}", email);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "User with this email does not exist"));
+        }
 
-        // Contenu de l'email
+        SecureRandom random = new SecureRandom();
+        int verificationCode = 100000 + random.nextInt(900000);
+
+        resetCodeService.saveResetCode(email, String.valueOf(verificationCode));
+        logger.info("Generated verification code for email: {}", email);
+
         String subject = "Password Recovery Code";
         String body = "Your password recovery code is: " + verificationCode +
-                ". Please use this code to reset your password. This code is valid for 15 minutes.";
+                ". This code is valid for 10 minutes.";
 
-        // Envoi de l'email
-        messageSender.sendEmailMessage(email, subject, body);
+        try {
+            messageSender.sendEmailMessage(email, subject, body);
+            logger.info("Password recovery email sent successfully to: {}", email);
+        } catch (Exception e) {
+            logger.error("Failed to send email to: {}. Error: {}", email, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Failed to send email"));
+        }
 
-        // Retourner une réponse contenant le code pour le frontend (utile pour du dev/test local)
-        return ResponseEntity.ok(Map.of(
-                "message", "Password recovery email sent successfully",
-                "verificationCode", verificationCode // Supprimez cela en prod pour éviter l'exposition
-        ));
+        return ResponseEntity.ok(Map.of("message", "Password recovery email sent successfully"));
     }
+
+    @PostMapping("/validate-reset-code")
+    public ResponseEntity<?> validateResetCode(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String resetCode = request.get("resetCode");
+        String newPassword = request.get("newPassword");
+
+        if (email == null || resetCode == null || newPassword == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Email, reset code, and new password are required"));
+        }
+
+        boolean isValid = resetCodeService.isResetCodeValid(email, resetCode);
+        if (!isValid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Invalid or expired reset code"));
+        }
+
+        resetCodeService.updatePassword(email, newPassword);
+        resetCodeService.invalidateCode(email);
+        return ResponseEntity.ok(Map.of("message", "Password reset successfully"));
+    }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        logger.info("Login attempt for email: {}", loginRequest.getEmail());
+
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if (user == null || !user.getPassword().equals(loginRequest.getPassword())) {
+            logger.warn("Invalid login attempt for email: {}", loginRequest.getEmail());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("error", "Invalid email or password"));
         }
@@ -88,15 +133,19 @@ public class UserController {
         response.put("role", user.getRole());
         response.put("email", user.getEmail());
         response.put("nomComplet", user.getNomComplet());
-        response.put("numTel",user.getNumTel());
+        response.put("numTel", user.getNumTel());
 
+        logger.info("Login successful for email: {}", user.getEmail());
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User updatedUser) {
+        logger.info("Updating user with email: {}", updatedUser.getEmail());
+
         User existingUser = userRepository.findByEmail(updatedUser.getEmail());
         if (existingUser == null) {
+            logger.warn("Update failed: No user found with email: {}", updatedUser.getEmail());
             return ResponseEntity.notFound().build();
         }
 
@@ -107,6 +156,7 @@ public class UserController {
         }
 
         User savedUser = userRepository.save(existingUser);
+        logger.info("User updated successfully for email: {}", savedUser.getEmail());
         return ResponseEntity.ok(savedUser);
     }
 }

@@ -58,4 +58,34 @@ export class UserService {
   sendPasswordRecoveryEmail(email: string): Observable<void> {
     return this.http.post<void>(`http://localhost:8082/api/users/recover-password`, { email });
   }
+
+  validateResetCode(email: string, resetCode: string) {
+    const body = {
+      email: email,
+      resetCode: resetCode
+    };
+
+    this.http.post('http://localhost:8082/api/users/validate-reset-code', body).subscribe({
+      next: (response) => {
+        console.log('Reset code validated successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error resetting password:', error);
+      }
+    });
+  }
+
+
+  resetPassword(email: string, resetCode: string, newPassword: string) {
+    const body = {
+      email: email,
+      resetCode: resetCode,
+      newPassword: newPassword
+    };
+
+    return this.http.post('http://localhost:8082/api/users/validate-reset-code', body);
+  }
+
+
+
 }

@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { PatientDashboardComponentComponent } from './components/patient-dashboard-component/patient-dashboard-component.component';
 import { TechnicianDashboardComponentComponent } from './components/technician-dashboard-component/technician-dashboard-component.component';
 import { AdminDashboardComponentComponent } from './components/admin-dashboard-component/admin-dashboard-component.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 
@@ -29,7 +30,8 @@ import { AdminDashboardComponentComponent } from './components/admin-dashboard-c
     CreateaccountComponent,
     PatientDashboardComponentComponent,
     TechnicianDashboardComponentComponent,
-    AdminDashboardComponentComponent
+    AdminDashboardComponentComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

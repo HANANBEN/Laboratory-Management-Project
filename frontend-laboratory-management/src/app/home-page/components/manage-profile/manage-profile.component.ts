@@ -63,6 +63,7 @@ export class ManageProfileComponent implements OnInit {
     this.userService.sendPasswordRecoveryEmail(this.email).subscribe({
       next: () => {
         alert('Password recovery email sent successfully.');
+        this.router.navigate(['/home/reset-password']); // Redirection vers le formulaire de réinitialisation
       },
       error: (error) => {
         console.error('Error sending recovery email:', error);
@@ -70,4 +71,5 @@ export class ManageProfileComponent implements OnInit {
       },
     });
   }
+
 }
