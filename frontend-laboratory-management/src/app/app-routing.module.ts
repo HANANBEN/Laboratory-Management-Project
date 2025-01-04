@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'analyses', // Nouvelle route pour analysis-management
     loadChildren: () => import('./analysis-management/analysis-management.module').then(m => m.AnalysisManagementModule),
   },
+  {
+    path: 'dossiers', // Nouvelle route pour dossier-management
+    loadChildren: () => import('./dossier-management/dossier-management.module').then(m => m.DossierManagementModule),
+  },
 ];
 
 @NgModule({
