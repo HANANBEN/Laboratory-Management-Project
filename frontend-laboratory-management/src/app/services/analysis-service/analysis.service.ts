@@ -8,76 +8,48 @@ import { Analysis } from '../../models/Analysis.model';
   providedIn: 'root',
 })
 export class AnalysisService {
-  private readonly BASE_URL = 'http://localhost:5678/analyses'; // Base URL for API
+  private apiUrl = 'http://localhost:5678/api/analyses';
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Fetches a list of analyses by the associated laboratory ID.
-   * @param idLaboratory The ID of the laboratory
-   * @returns An Observable of an array of Analysis objects
-   */
-  listAnalysesByLaboratoryId(idLaboratory: number): Observable<Analysis[]> {
-    const url = `${this.BASE_URL}/analyses/search/byLaboratoryId`;
-    const params = new HttpParams()
-      .set('laboratoryId', idLaboratory.toString())
-      .set('projection', 'extendedAnalysis'); // Adjust projection as needed
-
-    return this.http.get<any>(url, { params }).pipe(
-      map((response) => response._embedded?.analyses || []), // Extract data from _embedded field
-      catchError((error) => {
-        console.error('Error fetching analyses:', error);
-        return throwError(() => new Error('Failed to fetch analyses'));
-      })
-    );
+  // Fetch analyses by laboratory ID
+  getAnalysesByLaboratoryId(laboratoryId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/byLaboratoryId/${laboratoryId}`);
   }
 
-  /**
-   * Fetches details of a specific analysis by its ID.
-   * @param idAnalysis The ID of the analysis
-   * @returns An Observable of an Analysis object
-   */
-  getAnalysisById(idAnalysis: number): Observable<Analysis> {
-    const url = `${this.BASE_URL}/analyses/${idAnalysis}`;
-    return this.http.get<Analysis>(url).pipe(
-      catchError((error) => {
-        console.error(`Error fetching analysis with ID ${idAnalysis}:`, error);
-        return throwError(() => new Error('Failed to fetch analysis details'));
-      })
-    );
+  // Fetch all analyses
+  getAllAnalyses(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/listAll`);
   }
 
-  /**
-   * Creates a new analysis.
-   * @param analysis The Analysis object to be created
-   * @returns An Observable of the created Analysis object
-   */
-  createAnalysis(analysis: Analysis): Observable<Analysis> {
-    const url = `${this.BASE_URL}/analyses`;
-    return this.http.post<Analysis>(url, analysis).pipe(
-      catchError((error) => {
-        console.error('Error creating analysis:', error);
-        return throwError(() => new Error('Failed to create analysis'));
-      })
-    );
-  }
-  deleteAnalysis(id: number) {
-    return this.http.delete(`${this.BASE_URL}/analyses/${id}`);
-  }
-  /**
-   * Updates an existing analysis by its ID.
-   * @param idAnalysis The ID of the analysis to be updated
-   * @param analysis The updated Analysis object
-   * @returns An Observable of the updated Analysis object
-   */
-  updateAnalysis(idAnalysis: number, analysis: Analysis): Observable<Analysis> {
-    const url = `${this.BASE_URL}/analyses/${idAnalysis}`;
-    return this.http.put<Analysis>(url, analysis).pipe(
-      catchError((error) => {
-        console.error(`Error updating analysis with ID ${idAnalysis}:`, error);
-        return throwError(() => new Error('Failed to update analysis'));
-      })
-    );
+  // Fetch analysis by ID
+  getAnalysisById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
+  // Create new analysis
+  createAnalysis(analysis: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/create`, analysis);
+  }
+
+  // Update existing analysis
+  updateAnalysis(id: number, analysis: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, analysis);
+  }
+
+  // Delete analysis by ID
+  deleteAnalysis(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+
+  // Fetch analyses with null laboratories
+  getAnalysesWithNullLaboratory(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/null-laboratories`);
+  }
+
+  // Fetch analyses by name
+  getAnalysesByName(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/byName/${name}`);
+  }
 }

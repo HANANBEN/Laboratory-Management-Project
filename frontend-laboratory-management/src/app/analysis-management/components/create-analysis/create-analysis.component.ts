@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Analysis } from '../../../models/Analysis.model';
 import { TestAnalysis } from '../../../models/TestAnalysis.model';
-import { AnalysisService } from '../../../services/analysis-service/analysis.service'; // Service pour gérer les requêtes liées aux analyses
-import { LaboratoireService } from '../../../services/labo-service/laboratoire.service'; // Service pour récupérer les laboratoires
+import { AnalysisService } from '../../../services/analysis-service/analysis.service';
+import { LaboratoireService } from '../../../services/labo-service/laboratoire.service';
 import { TestAnalysisService } from '../../../services/testAnalysis-service/testAnalysis.service';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms'; // Service pour récupérer les tests
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-analysis',
@@ -16,16 +16,19 @@ import {FormsModule} from '@angular/forms'; // Service pour récupérer les test
   styleUrls: ['./create-analysis.component.css'],
 })
 export class CreateAnalysisComponent implements OnInit {
-  analysis: Analysis = {
+
+  analysis: { laboratory: null; fkLaboratoireId: number; description: string; testAnalysis: any[]; id: number; nom: string } = {
     id: 0,
     fkLaboratoireId: 0,
     nom: '',
     description: '',
     testAnalysis: [],
+    laboratory: null,
   };
-  laboratories: any[] = []; // Liste des laboratoires disponibles
-  availableTests: any[] = []; // Liste des tests disponibles
-  selectedTest: any = null; // Test sélectionné pour être ajouté
+
+  laboratories: any[] = [];
+  availableTests: TestAnalysis[] = [];
+  selectedTests: TestAnalysis[] = []; // Track selected tests
 
   constructor(
     private analysisService: AnalysisService,
@@ -35,56 +38,73 @@ export class CreateAnalysisComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Charger la liste des laboratoires
+    this.loadLaboratories();
+    this.loadTestAnalysesWithNull();
+  }
+
+  loadLaboratories(): void {
     this.laboratoireService.getLaboratoires().subscribe({
-      next: (data) => {
-        this.laboratories = data;
-        console.log('Laboratories loaded:', this.laboratories);
+      next: (data: any) => {
+        this.laboratories = data._embedded?.laboratories || [];
       },
-      error: (err) => console.error('Error loading laboratories:', err),
-    });
-
-    // Charger la liste des tests disponibles
-    this.testAnalysisService.listTestAnalysisByAnalysisId(0).subscribe({
-      next: (data) => {
-        this.availableTests = data;
-        console.log('Available tests loaded:', this.availableTests);
-      },
-      error: (err) => console.error('Error loading tests:', err),
+      error: (err) => console.error('Failed to load laboratories:', err),
     });
   }
 
-  // Ajouter un test à la liste des tests associés
-  addTest(): void {
-    if (this.selectedTest) {
-      const testToAdd = this.availableTests.find(
-        (test) => test.id === this.selectedTest
-      );
-      if (testToAdd && !this.analysis.testAnalysis.some((test) => test.id === testToAdd.id)) {
-        this.analysis.testAnalysis.push(testToAdd);
-      }
-      this.selectedTest = null; // Réinitialiser la sélection
+  loadTestAnalysesWithNull(): void {
+    this.testAnalysisService.getTestAnalysisWithNullAnalysis().subscribe({
+      next: (tests) => {
+        // Log the tests data to the console to check its structure and values
+        console.log('Loaded test analyses with null analysis:', tests);
+
+        this.availableTests = tests;
+      },
+      error: (err) => console.error('Failed to load test analyses with null analysis:', err),
+    });
+  }
+
+  addTest(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement; // Cast to HTMLSelectElement
+    const testId = parseInt(selectElement.value, 10); // Get the selected test's ID
+    const test = this.availableTests.find((t) => t.id === testId);
+
+    if (test && !this.selectedTests.some((t) => t.id === test.id)) {
+      this.selectedTests.push(test); // Add test to the selectedTests array
     }
+
+    selectElement.value = ''; // Reset dropdown selection
   }
 
-  // Supprimer un test de la liste des tests associés
   removeTest(index: number): void {
-    this.analysis.testAnalysis.splice(index, 1);
+    this.selectedTests.splice(index, 1); // Remove test from selectedTests
   }
 
-  // Sauvegarder l'analyse
   saveAnalysis(): void {
-    this.analysisService.createAnalysis(this.analysis).subscribe({
-      next: () => {
-        console.log('Analysis created successfully');
-        this.router.navigate(['/analyses']); // Redirection après la création
+    // Create a new payload excluding the 'id' field
+    console.log(this.analysis)
+    const { id, ...payload } = this.analysis;
+
+    // Add selected tests to the payload
+    payload.testAnalysis = this.selectedTests;
+
+    this.analysisService.createAnalysis(payload).subscribe({
+      next: (createdAnalysis) => {
+        // Update selected test analyses with the created analysis
+        this.selectedTests.forEach((test) => {
+          test.analysis = createdAnalysis; // Assign the created analysis to each test
+        });
+
+        console.log('Analysis created successfully with associated tests');
+        this.router.navigate(['/analyses/list']);
       },
       error: (err) => console.error('Error creating analysis:', err),
     });
   }
 
-  // Annuler et revenir à la liste
+
   cancel(): void {
     this.router.navigate(['/analyses']);
   }
 }
+
+

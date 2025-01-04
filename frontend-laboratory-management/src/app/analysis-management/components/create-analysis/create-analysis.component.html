@@ -1,116 +1,109 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
-
 <div class="container py-5">
-  <div class="row d-flex justify-content-center">
-    <div class="col-lg-8 col-md-10 col-sm-12">
-      <div class="card shadow rounded-3">
-        <div class="card-body p-4">
-          <h4 class="text-center my-4 text-primary">Create New Analysis</h4>
+  <div class="card shadow-sm p-4">
+    <h2 class="text-center mb-4">Create New Analysis</h2>
+    <form>
+      <div class="row g-3">
 
-          <form (ngSubmit)="saveAnalysis()">
-            <!-- Name Field -->
-            <div class="form-group mb-4">
-              <label for="name" class="form-label">Name:</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                <input
-                  type="text"
-                  id="name"
-                  [(ngModel)]="analysis.nom"
-                  name="name"
-                  class="form-control"
-                  required
-                  placeholder="Enter analysis name"
-                />
-              </div>
-            </div>
+        <!-- Analysis Name -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              id="nom"
+              class="form-control"
+              [(ngModel)]="analysis.nom"
+              name="nom"
+              placeholder="Analysis Name"
+              required
+            />
+            <label for="nom">Analysis Name</label>
+          </div>
+        </div>
 
-            <!-- Description Field -->
-            <div class="form-group mb-4">
-              <label for="description" class="form-label">Description:</label>
-              <textarea
-                id="description"
-                [(ngModel)]="analysis.description"
-                name="description"
-                class="form-control"
-                rows="3"
-                required
-                placeholder="Enter description"
-              ></textarea>
-            </div>
+        <!-- Description -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <textarea
+              id="description"
+              class="form-control"
+              [(ngModel)]="analysis.description"
+              name="description"
+              rows="3"
+              placeholder="Enter description"
+            ></textarea>
+            <label for="description">Description</label>
+          </div>
+        </div>
 
-            <!-- Laboratory ID Field -->
-            <div class="form-group mb-4">
-              <label for="labId" class="form-label">Laboratory:</label>
-              <select
-                id="labId"
-                [(ngModel)]="analysis.fkLaboratoireId"
-                name="labId"
-                class="form-select"
-                required
+        <!-- Select Laboratory -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select
+              id="laboratory"
+              class="form-select"
+              [(ngModel)]="analysis.fkLaboratoireId"
+              name="fkLaboratoireId"
+              required
+            >
+              <option *ngFor="let lab of laboratories" [value]="lab.id">
+                {{ lab.nom }}
+              </option>
+            </select>
+            <label for="laboratory">Select Laboratory</label>
+          </div>
+        </div>
+
+        <!-- Select Tests -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select
+              id="test-select"
+              class="form-select"
+              (change)="addTest($event)"
+            >
+              <option value="" disabled selected>Select a test</option>
+              <option *ngFor="let test of availableTests" [value]="test.id">
+                {{ test.nomTest }}
+              </option>
+            </select>
+            <label for="test-select">Select Tests</label>
+          </div>
+        </div>
+
+        <!-- Selected Tests -->
+        <div class="col-md-12">
+          <div *ngIf="selectedTests.length > 0; else noTests">
+            <h5 class="mb-3">Selected Tests:</h5>
+            <div>
+              <span
+                class="badge bg-primary me-2 p-2"
+                *ngFor="let test of selectedTests; index as i"
               >
-                <option value="" disabled selected>Select Laboratory</option>
-                <option *ngFor="let lab of laboratories" [value]="lab.id">
-                  {{ lab.name }}
-                </option>
-              </select>
+                {{ test.nomTest }}
+                <button
+                  type="button"
+                  class="btn-close btn-close-white ms-2"
+                  (click)="removeTest(i)"
+                ></button>
+              </span>
             </div>
+          </div>
 
-            <!-- Associated Tests Field -->
-            <div class="form-group mb-4">
-              <label for="testAnalysis" class="form-label">Associated Tests:</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-vials"></i></span>
-                <select
-                  id="testAnalysis"
-                  [(ngModel)]="selectedTest"
-                  name="testAnalysis"
-                  class="form-select"
-                >
-                  <option *ngFor="let test of availableTests" [value]="test.id">
-                    {{ test.name }}
-                  </option>
-                </select>
-                <button type="button" class="btn btn-outline-primary ms-2" (click)="addTest()">
-                  Add Test
-                </button>
-              </div>
-              <div class="mt-3">
-                <ul class="list-group">
-                  <li
-                    class="list-group-item d-flex justify-content-between align-items-center"
-                    *ngFor="let test of analysis.testAnalysis; let i = index"
-                  >
-                    {{ test.nomTest }}
-                    <button
-                      type="button"
-                      class="btn btn-outline-danger btn-sm"
-                      (click)="removeTest(i)"
-                    >
-                      Remove
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary shadow-sm">
-                <i class="fas fa-save"></i> Save Analysis
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary ms-3 shadow-sm"
-                (click)="cancel()"
-              >
-                <i class="fas fa-times"></i> Cancel
-              </button>
-            </div>
-          </form>
+          <ng-template #noTests>
+            <p class="text-muted">No tests selected yet.</p>
+          </ng-template>
         </div>
       </div>
-    </div>
+
+      <!-- Buttons -->
+      <div class="mt-4 text-center">
+        <button type="button" class="btn btn-primary px-4 me-2" (click)="saveAnalysis()">
+          Save Analysis
+        </button>
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
   </div>
 </div>

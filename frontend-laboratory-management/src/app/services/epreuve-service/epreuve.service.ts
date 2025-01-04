@@ -12,7 +12,7 @@ export class EpreuveService {
   constructor(private http: HttpClient) {}
 
   // Create a new Epreuve
-  createEpreuve(epreuve): Observable<Epreuve> {
+  createEpreuve(epreuve: { nom: string; fkIdAnalyse: number }): Observable<Epreuve> {
     return this.http.post<Epreuve>(`${this.apiUrl}/create`, epreuve);
   }
 

@@ -45,6 +45,7 @@ public interface TestAnalysisRepository extends JpaRepository<TestAnalysis, Long
     List<TestAnalysis> findByAnalysisIdIncludingNull(@Param("analysisId") Long analysisId);
 
     // Recherche des tests sans analyse associée
-    @Query("SELECT t FROM TestAnalysis t WHERE t.analysis IS NULL")
-    List<TestAnalysis> findByAnalysisIsNull();
+    @Query(value = "SELECT * FROM test_analyse t WHERE t.fk_id_analyse IS NULL", nativeQuery = true)
+    List<TestAnalysis> findByAnalysisIsNullNative();
+
 }

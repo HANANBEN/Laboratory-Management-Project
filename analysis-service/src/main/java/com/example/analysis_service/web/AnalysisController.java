@@ -19,6 +19,7 @@ public class AnalysisController {
     @Autowired
     private AnalysisRepository analysisRepository;
 
+
     // Fetch analysis by specific ID
     @GetMapping("/{id}")
     public ResponseEntity<Analysis> getAnalysisById(@PathVariable("id") Long id) {
@@ -41,6 +42,7 @@ public class AnalysisController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
 
     // Create a new analysis
     @PostMapping("/create")

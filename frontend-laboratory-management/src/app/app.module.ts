@@ -12,6 +12,8 @@ import { AdressManagementModule } from './adress-management/adress-management.mo
 // Import du module AnalysisManagement
 import { AnalysisManagementModule } from './analysis-management/analysis-management.module';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {EpreuveManagementModule} from './epreuve-management/epreuve-management.module';
+import {EpreuveManagementRoutingModule} from './epreuve-management/epreuve-management-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
     HttpClientModule,
     // Ajout du module AnalysisManagement
     AnalysisManagementModule,
+    EpreuveManagementModule,
   ],
   providers: [
     provideAnimationsAsync(),

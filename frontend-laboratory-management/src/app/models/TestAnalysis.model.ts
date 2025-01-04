@@ -1,3 +1,5 @@
+import {Analysis} from './Analysis.model';
+
 export interface TestAnalysis {
   id: number;
   nomTest: string;
@@ -6,4 +8,5 @@ export interface TestAnalysis {
   intervalMaxDeReference: number;
   uniteDeReference: string;
   details: string;
+  analysis: Analysis;
 }

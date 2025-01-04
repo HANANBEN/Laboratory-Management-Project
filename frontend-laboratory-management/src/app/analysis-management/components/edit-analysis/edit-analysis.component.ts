@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./edit-analysis.component.css'],
 })
 export class EditAnalysisComponent implements OnInit {
-  analysis: Analysis = {
+  analysis: { fkLaboratoireId: number; description: string; testAnalysis: any[]; id: number; nom: string } = {
     id: 0,
     fkLaboratoireId: 0,
     nom: '',

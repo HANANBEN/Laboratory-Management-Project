@@ -1,4 +1,5 @@
 import { TestAnalysis } from './TestAnalysis.model';
+import {Laboratoire} from './laboratoire.model';
 
 export interface Analysis {
   id: number; // Identifiant de l'analyse
@@ -6,4 +7,5 @@ export interface Analysis {
   nom: string; // Nom de l'analyse
   description: string; // Description de l'analyse
   testAnalysis: TestAnalysis[]; // Liste des tests associés
+  laboratory?:Laboratoire;
 }

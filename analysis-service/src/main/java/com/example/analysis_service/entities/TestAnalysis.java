@@ -11,7 +11,7 @@ public class TestAnalysis {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "fkIdAnalyse", referencedColumnName = "id")
+    @JoinColumn(name = "fkIdAnalyse", referencedColumnName = "id" ,nullable = true)
     @JsonBackReference
     private Analysis analysis;
     private String nomTest;

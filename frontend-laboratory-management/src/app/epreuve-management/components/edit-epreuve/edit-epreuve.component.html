@@ -1,1 +1,65 @@
-<p>edit-epreuve works!</p>
+<section class="vh-100" style="background-color: #f8f9fc;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card shadow-lg rounded-4">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <h4 class="text-center text-primary mb-4">Edit Epreuve</h4>
+
+            <!-- Form -->
+            <form #editEpreuveForm="ngForm" (ngSubmit)="updateEpreuve()">
+              <!-- Name Field -->
+              <div class="mb-3">
+                <label for="nom" class="form-label">Epreuve Name</label>
+                <input
+                  type="text"
+                  id="nom"
+                  name="nom"
+                  class="form-control border-primary shadow-sm"
+                  placeholder="Enter epreuve name"
+                  [(ngModel)]="epreuve.nom"
+                  required
+                />
+              </div>
+
+              <!-- Analysis Dropdown -->
+              <div class="mb-3">
+                <label for="analysis" class="form-label">Associated Analysis</label>
+                <select
+                  id="analysis"
+                  name="analysis"
+                  class="form-select border-primary shadow-sm"
+                  [(ngModel)]="epreuve.fkIdAnalyse"
+                  required
+                >
+                  <option *ngFor="let analysis of analyses" [value]="analysis.id">
+                    {{ analysis.nom }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="d-grid gap-3 mt-4">
+                <button
+                  type="submit"
+                  class="btn btn-primary shadow-sm d-flex justify-content-center align-items-center gap-2"
+                  [disabled]="!editEpreuveForm.form.valid"
+                >
+                  <i class="fas fa-save"></i> Save Changes
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary shadow-sm d-flex justify-content-center align-items-center gap-2"
+                  (click)="cancel()"
+                >
+                  <i class="fas fa-times"></i> Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

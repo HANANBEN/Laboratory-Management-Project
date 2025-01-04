@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TestAnalysisService {
-  private readonly BASE_URL = 'http://localhost:5678/testanalysis';
+  private readonly BASE_URL = 'http://localhost:5678/api/test-analyses';
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +24,8 @@ export class TestAnalysisService {
       })
     );
   }
+
+
 
   getTestAnalysisById(id: number): Observable<TestAnalysis> {
     const url = `${this.BASE_URL}/testAnalyses/${id}`;
@@ -46,7 +48,7 @@ export class TestAnalysisService {
   }
 
   deleteTestAnalysis(id: number): Observable<void> {
-    const url = `${this.BASE_URL}/testAnalyses/${id}`;
+    const url = `${this.BASE_URL}/${id}`;
     return this.http.delete<void>(url).pipe(
       catchError((error) => {
         console.error('Error deleting test analysis:', error);
@@ -54,4 +56,16 @@ export class TestAnalysisService {
       })
     );
   }
+
+  // Fetch TestAnalysis with null analysis
+  getTestAnalysisWithNullAnalysis(): Observable<TestAnalysis[]> {
+    const url = `${this.BASE_URL}/with-null-analysis`;
+    return this.http.get<TestAnalysis[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching test analyses with null analysis:', error);
+        return throwError(() => new Error('Failed to fetch test analyses with null analysis'));
+      })
+    );
+  }
+
 }
