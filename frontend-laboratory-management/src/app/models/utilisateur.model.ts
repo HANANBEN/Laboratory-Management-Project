@@ -11,3 +11,4 @@ export interface Utilisateur {
   laboratoireId?: number; // Référence à l'ID du laboratoire
   laboratory?: Laboratoire; // Informations sur le laboratoire associé
 }
+

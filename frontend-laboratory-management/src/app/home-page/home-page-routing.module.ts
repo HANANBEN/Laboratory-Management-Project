@@ -9,7 +9,6 @@ import {ProjetComponent} from './components/projet/projet.component';
 import {ServiceComponent} from './components/service/service.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {CreateaccountComponent} from './components/createaccount/createaccount.component';
-import {AdminDashboardComponentComponent} from './components/admin-dashboard-component/admin-dashboard-component.component';
 import {
   TechnicianDashboardComponentComponent
 } from './components/technician-dashboard-component/technician-dashboard-component.component';
@@ -19,6 +18,7 @@ import {
 import {AuthGuard} from '../guard/auth.guard';
 import {ManageProfileComponent} from './components/manage-profile/manage-profile.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import {AdminDashboardComponent} from './components/admin-dashboard-component/admin-dashboard-component.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Pas de chemin supplémentaire,
@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'service' , component: ServiceComponent },
   { path: 'contact' , component: ContactComponent },
   { path: 'createaccount' , component: CreateaccountComponent },
-  { path: 'admin/dashboard', component: AdminDashboardComponentComponent, canActivate: [AuthGuard], data: { role: 'admin' } },
+  { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard], data: { role: 'admin' } },
   { path: 'technician/dashboard', component: TechnicianDashboardComponentComponent , canActivate: [AuthGuard], data: { role: 'technicien' } },
   { path: 'patient/dashboard', component: PatientDashboardComponentComponent, canActivate: [AuthGuard], data: { role: 'patient' } },
   { path: 'manage-profile', component: ManageProfileComponent },
