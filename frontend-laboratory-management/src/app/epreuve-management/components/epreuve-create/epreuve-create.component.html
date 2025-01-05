@@ -1,0 +1,64 @@
+<div class="container py-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow rounded-3">
+        <div class="card-body p-4">
+          <h4 class="text-center my-4 text-primary">Create New Epreuve</h4>
+
+          <form (ngSubmit)="saveEpreuve()">
+            <!-- Epreuve Name -->
+            <div class="form-group mb-4">
+              <label for="nom" class="form-label">Epreuve Name:</label>
+              <input
+                type="text"
+                id="nom"
+                [(ngModel)]="newEpreuve.nom"
+                name="nom"
+                class="form-control"
+                required
+                placeholder="Enter Epreuve Name"
+              />
+              <div *ngIf="!newEpreuve.nom" class="text-danger">
+                Name is required.
+              </div>
+            </div>
+
+            <!-- Analysis ID -->
+            <div class="form-group mb-4">
+              <label for="fkIdAnalyse" class="form-label">Assign Analysis:</label>
+              <select
+                id="fkIdAnalyse"
+                [(ngModel)]="selectedAnalysisId"
+                name="fkIdAnalyse"
+                class="form-select"
+                required
+              >
+                <option value="" disabled selected>Select an Analysis</option>
+                <option *ngFor="let analysis of analyses" [value]="analysis.id">
+                  {{ analysis.nom }}
+                </option>
+              </select>
+              <div *ngIf="!selectedAnalysisId" class="text-danger">
+                Please select an analysis.
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-center flex-wrap gap-2">
+              <button type="submit" class="btn btn-primary shadow-sm">
+                <i class="fas fa-save"></i> Save Epreuve
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary shadow-sm"
+                (click)="cancel()"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<section class="vh-100" style="background-color: #eef2f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3 shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="text-center my-4 pb-3 text-primary">Edit Contact Laboratory</h4>
+            <form (ngSubmit)="updateContact()">
+
+              <!-- Phone -->
+              <div class="mb-3">
+                <label for="numTel" class="form-label">Phone</label>
+                <input
+                  type="text"
+                  id="numTel"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="contact.numTel"
+                  name="numTel"
+                  required
+                />
+              </div>
+
+              <!-- Fax -->
+              <div class="mb-3">
+                <label for="fax" class="form-label">Fax</label>
+                <input
+                  type="text"
+                  id="fax"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="contact.fax"
+                  name="fax"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="contact.email"
+                  name="email"
+                  required
+                />
+              </div>
+
+              <!-- Laboratory -->
+              <div class="mb-3">
+                <label for="laboratory" class="form-label">Laboratory</label>
+                <select
+                  id="laboratory"
+                  class="form-select border-primary shadow-sm"
+                  [(ngModel)]="contact.fkIdLaboratory"
+                  name="laboratory"
+                  required
+                >
+                  <option *ngFor="let lab of laboratories" [value]="lab.id">
+                    {{ lab.nom }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Address -->
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <select
+                  id="address"
+                  class="form-select border-primary shadow-sm"
+                  [(ngModel)]="contact.fkIdAdress"
+                  name="address"
+                  required
+                >
+                  <option *ngFor="let addr of addresses" [value]="addr.id">
+                    {{ addr.numVoie}}, {{ addr.nomVoie }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="btn btn-primary shadow-sm w-100 d-flex justify-content-center align-items-center gap-2"
+              >
+                <i class="fas fa-save"></i> Update Contact
+              </button>
+
+              <!-- Cancel Button -->
+              <button
+                type="button"
+                class="btn btn-secondary shadow-sm w-100 mt-3"
+                (click)="cancelEdit()"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

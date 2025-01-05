@@ -6,6 +6,8 @@ import org.springframework.data.rest.core.config.Projection;
 public interface AdressProjection {
      Long getId();
      String getNomVoie() ;
+
+     String getNumVoie();
      Long getCodePostal();
      String getVille();
      String getCommune();

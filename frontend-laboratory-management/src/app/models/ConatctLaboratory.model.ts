@@ -3,9 +3,8 @@ import {Adress} from './adress.model';
 
 export interface ContactLaboratory {
   id: number;
-  fkIdLaboratory: number; // Foreign Key to Laboratory
-
-  fkIdAdress: number; // Foreign Key to Address
+  fkIdLaboratory: number ;// Foreign Key to Laboratory
+  fkIdAdress: number ; // Foreign Key to Address
   numTel: string;
   fax?: string; // Optional field
   email: string;

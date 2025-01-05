@@ -12,20 +12,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "contact_laboratoire")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class ContactLaboratory{
+public class ContactLaboratory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long fkIdLaboratory; // Foreign Key vers Laboratoire
     @Transient
     private Laboratory laboratory;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long fkIdAdress; // Foreign Key vers Adresse
 
     @Transient
@@ -43,63 +41,74 @@ public class ContactLaboratory{
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long fkIdLaboratory() {
+    public Long getFkIdLaboratory() {
         return fkIdLaboratory;
     }
 
-    public void setFkIdLaboratory(Long fkIdLaboratory) {
-        this.fkIdLaboratory = fkIdLaboratory;
-    }
-
-    public Laboratory laboratory() {
-        return laboratory;
-    }
-
-    public void setLaboratory(Laboratory laboratory) {
-        this.laboratory = laboratory;
-    }
-
-    public Long fkIdAdress() {
+    public Long getFkIdAdress() {
         return fkIdAdress;
     }
 
-    public void setFkIdAdress(Long fkIdAdress) {
-        this.fkIdAdress = fkIdAdress;
-    }
-
-    public Adress adress() {
-        return adress;
-    }
-
-    public void setAdress(Adress adress) {
-        this.adress = adress;
-    }
-
-    public String numTel() {
+    public String getNumTel() {
         return numTel;
     }
 
-    public void setNumTel(String numTel) {
-        this.numTel = numTel;
-    }
-
-    public String fax() {
+    public String getFax() {
         return fax;
     }
 
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-
-    public String email() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Laboratory getLaboratory() {
+        return laboratory;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+    public void setId(Long id) { this.id = id; }
+    public void setFkIdLaboratory(Long fkIdLaboratory) { this.fkIdLaboratory = fkIdLaboratory; }
+    public void setFkIdAdress(Long fkIdAdress) { this.fkIdAdress = fkIdAdress; }
+    public void setNumTel(String numTel) { this.numTel = numTel; }
+    public void setFax(String fax) { this.fax = fax; }
+    public void setEmail(String email) { this.email = email; }
+    public void setLaboratory(Laboratory laboratory) { this.laboratory = laboratory; }
+    public void setAdress(Adress adress) { this.adress = adress; }
+
+    public ContactLaboratory(Long fkIdLaboratory, Long fkIdAdress, String numTel, String fax, String email) {
+        this.fkIdLaboratory = fkIdLaboratory;
+
+        this.fkIdAdress = fkIdAdress;
+
+        this.numTel = numTel;
+        this.fax = fax;
         this.email = email;
     }
+
+    public ContactLaboratory(Long id, String numTel, String fax, String email) {
+        this.id = id;
+
+        this.fkIdAdress = fkIdAdress;
+
+        this.numTel = numTel;
+        this.fax = fax;
+        this.email = email;
+    }
+
+    public ContactLaboratory(Long id, Long fkIdLaboratory, Laboratory laboratory, Long fkIdAdress, Adress adress, String numTel, String fax, String email) {
+        this.id = id;
+        this.fkIdLaboratory = fkIdLaboratory;
+        this.laboratory = laboratory;
+        this.fkIdAdress = fkIdAdress;
+        this.adress = adress;
+        this.numTel = numTel;
+        this.fax = fax;
+        this.email = email;
+    }
+    public ContactLaboratory() {
+    }
+
+
 }

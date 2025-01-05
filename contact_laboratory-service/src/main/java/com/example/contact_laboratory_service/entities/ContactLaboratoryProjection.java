@@ -1,5 +1,6 @@
 package com.example.contact_laboratory_service.entities;
 
+import com.example.contact_laboratory_service.model.Laboratory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -12,9 +13,4 @@ public interface ContactLaboratoryProjection {
 
     Long getFkIdAdress(); // Foreign key for Adress
 
-    @Value("#{target.fkIdLaboratory != null ? @LaboratoryClientService.getLaboratoryById(target.fkIdLaboratory) : null}")
-    Object getLaboratoryDetails(); // Uses Feign Client
-
-    @Value("#{target.fkIdAdress != null ? @adressClientService.getAdressById(target.fkIdAdress) : null}")
-    Object getAdressDetails(); // Uses Feign Client
 }

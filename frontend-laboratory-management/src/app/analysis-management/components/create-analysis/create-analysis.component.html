@@ -1,0 +1,109 @@
+<div class="container py-5">
+  <div class="card shadow-sm p-4">
+    <h2 class="text-center mb-4">Create New Analysis</h2>
+    <form>
+      <div class="row g-3">
+
+        <!-- Analysis Name -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              id="nom"
+              class="form-control"
+              [(ngModel)]="analysis.nom"
+              name="nom"
+              placeholder="Analysis Name"
+              required
+            />
+            <label for="nom">Analysis Name</label>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <textarea
+              id="description"
+              class="form-control"
+              [(ngModel)]="analysis.description"
+              name="description"
+              rows="3"
+              placeholder="Enter description"
+            ></textarea>
+            <label for="description">Description</label>
+          </div>
+        </div>
+
+        <!-- Select Laboratory -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select
+              id="laboratory"
+              class="form-select"
+              [(ngModel)]="analysis.fkLaboratoireId"
+              name="fkLaboratoireId"
+              required
+            >
+              <option *ngFor="let lab of laboratories" [value]="lab.id">
+                {{ lab.nom }}
+              </option>
+            </select>
+            <label for="laboratory">Select Laboratory</label>
+          </div>
+        </div>
+
+        <!-- Select Tests -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select
+              id="test-select"
+              class="form-select"
+              (change)="addTest($event)"
+            >
+              <option value="" disabled selected>Select a test</option>
+              <option *ngFor="let test of availableTests" [value]="test.id">
+                {{ test.nomTest }}
+              </option>
+            </select>
+            <label for="test-select">Select Tests</label>
+          </div>
+        </div>
+
+        <!-- Selected Tests -->
+        <div class="col-md-12">
+          <div *ngIf="selectedTests.length > 0; else noTests">
+            <h5 class="mb-3">Selected Tests:</h5>
+            <div>
+              <span
+                class="badge bg-primary me-2 p-2"
+                *ngFor="let test of selectedTests; index as i"
+              >
+                {{ test.nomTest }}
+                <button
+                  type="button"
+                  class="btn-close btn-close-white ms-2"
+                  (click)="removeTest(i)"
+                ></button>
+              </span>
+            </div>
+          </div>
+
+          <ng-template #noTests>
+            <p class="text-muted">No tests selected yet.</p>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="mt-4 text-center">
+        <button type="button" class="btn btn-primary px-4 me-2" (click)="saveAnalysis()">
+          Save Analysis
+        </button>
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

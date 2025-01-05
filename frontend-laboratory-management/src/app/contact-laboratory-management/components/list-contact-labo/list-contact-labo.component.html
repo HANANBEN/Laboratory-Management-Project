@@ -1,5 +1,7 @@
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+
 
 <section class="vh-100" style="background-color: #f8f9fa;">
   <div class="container py-5 h-100">
@@ -7,6 +9,17 @@
       <div class="col col-lg-9 col-xl-7">
         <div class="card rounded-3 shadow">
           <div class="card-body p-4">
+            <!-- Back to Laboratories Button -->
+            <div class="d-flex justify-content-between mb-3">
+              <button class="btn btn-secondary" (click)="navigateToLaboratories()">
+                <i class="fas fa-arrow-left"></i> Back to List of Laboratories
+              </button>
+              <!-- Add New Contact Button -->
+              <button class="btn btn-primary" (click)="addNewContact()">
+                <i class="fas fa-plus-circle"></i> Add New Contact
+              </button>
+            </div>
+
             <h4 class="text-center my-4 pb-3 text-primary">Laboratory Contacts</h4>
 
             <div *ngIf="contactLaboratories.length > 0; else noData">
@@ -31,8 +44,6 @@
                     {{ contact.adress?.numVoie || '' }} {{ contact.adress?.nomVoie || '' }},
                     {{ contact.adress?.codePostal || '' }} {{ contact.adress?.ville || '' }},
                     {{ contact.adress?.commune || '' }}
-
-
                   </td>
                   <td>
                     <div class="d-flex align-items-center gap-3">
@@ -41,7 +52,7 @@
                         <i class="fas fa-edit"></i>
                       </a>
                       <!-- Delete Button -->
-                      <a class="btn btn-outline-danger btn-sm shadow" (click)="deleteContact(contact.id)">
+                      <a class="btn btn-outline-danger btn-sm shadow" >
                         <i class="fas fa-trash"></i>
                       </a>
                     </div>

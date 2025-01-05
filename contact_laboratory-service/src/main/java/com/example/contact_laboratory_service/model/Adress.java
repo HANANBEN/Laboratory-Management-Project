@@ -38,7 +38,7 @@ public class Adress {
         this.id = id;
     }
 
-    public int numVoie() {
+    public int getNumVoie() {
         return numVoie;
     }
 
@@ -46,7 +46,7 @@ public class Adress {
         this.numVoie = numVoie;
     }
 
-    public String nomVoie() {
+    public String getNomVoie() {
         return nomVoie;
     }
 
@@ -54,7 +54,7 @@ public class Adress {
         this.nomVoie = nomVoie;
     }
 
-    public Long codePostal() {
+    public Long getCodePostal() {
         return codePostal;
     }
 
@@ -62,7 +62,7 @@ public class Adress {
         this.codePostal = codePostal;
     }
 
-    public String ville() {
+    public String getVille() {
         return ville;
     }
 
@@ -70,7 +70,7 @@ public class Adress {
         this.ville = ville;
     }
 
-    public String commune() {
+    public String getCommune() {
         return commune;
     }
 

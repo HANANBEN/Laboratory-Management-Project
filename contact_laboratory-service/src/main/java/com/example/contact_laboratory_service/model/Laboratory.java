@@ -31,7 +31,7 @@ import java.util.Date;
             this.id = id;
         }
 
-        public String nom() {
+        public String getNom() {
             return nom;
         }
 
@@ -39,7 +39,7 @@ import java.util.Date;
             this.nom = nom;
         }
 
-        public String logo() {
+        public String getLogo() {
             return logo;
         }
 
@@ -47,7 +47,7 @@ import java.util.Date;
             this.logo = logo;
         }
 
-        public String nrc() {
+        public String getNrc() {
             return nrc;
         }
 
@@ -55,7 +55,7 @@ import java.util.Date;
             this.nrc = nrc;
         }
 
-        public boolean active() {
+        public boolean getActive() {
             return active;
         }
 
@@ -63,7 +63,7 @@ import java.util.Date;
             this.active = active;
         }
 
-        public Date dateActivation() {
+        public Date getDateActivation() {
             return dateActivation;
         }
 

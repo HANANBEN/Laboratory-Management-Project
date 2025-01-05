@@ -1,0 +1,57 @@
+.welcome-banner {
+  position: relative;
+  color: #FFFFFF;
+  padding: 40px 20px;
+  border-radius: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to right, #014f86, #01497c, #38a3a5, #012a4a, #023e7d, #002855);
+  background-size: 300% 300%;
+  animation: gradient-animation 10s ease infinite;    }
+
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.navbar {
+  background-color: #64a6bd;
+}
+
+.navbar-brand, .nav-link, .profile-dropdown .dropdown-item {
+  color: #F7FAFC;
+}
+
+.navbar-toggler-icon {
+  background-color: #F7FAFC;
+}
+
+.dashboard-card i, .welcome-banner i, .navbar i {
+  color: #64a6bd;
+}
+
+.dashboard-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #F7FAFC;
+  color: #4A5568;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.btn {
+  background-color: #64a6bd;
+  color: #FFFFFF;
+}
+
+.btn:hover {
+  background-color: #4A5568;
+  color: #FFFFFF;
+}
+
+.chart-container {
+  margin-top: 20px;
+}

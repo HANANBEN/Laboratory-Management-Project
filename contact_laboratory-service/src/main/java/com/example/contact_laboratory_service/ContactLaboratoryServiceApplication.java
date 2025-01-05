@@ -39,7 +39,7 @@ public class ContactLaboratoryServiceApplication {
 
 			Laboratory laboratory=labService.getLaboratoryById(laboratoryId);
 
-			for (int i =0 ; i<20; i++){
+			for (int i =0 ; i<7; i++){
 // Create a new instance of ContactLaboratory
 				ContactLaboratory contactLaboratory = new ContactLaboratory();
 
