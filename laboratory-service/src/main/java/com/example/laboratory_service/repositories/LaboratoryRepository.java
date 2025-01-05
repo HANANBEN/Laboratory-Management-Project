@@ -1,7 +1,9 @@
 package com.example.laboratory_service.repositories;
 
 import com.example.laboratory_service.entities.Laboratory;
+import com.example.laboratory_service.entities.LaboratoryProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -26,5 +28,10 @@ public interface LaboratoryRepository extends JpaRepository<Laboratory, Long> {
 
     @RestResource(path = "by-nom-and-active", rel = "by-nom-and-active")
     List<Laboratory> findByNomContainingAndActive(@Param("nom") String nom, @Param("active") boolean active);
+
+    @RestResource(path = "byId", rel = "byId")
+    @Query("select l from Laboratory l where l.id = :id")
+    LaboratoryProjection findByIdWithProjection(@Param("id") Long id);
+
 
 }

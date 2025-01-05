@@ -29,6 +29,11 @@ public class AnalysisServiceApplication {
 			// Fetch laboratories from an external service
 			List<Laboratory> laboratories = laboratoryService.getAllLaboratories().getContent().stream().toList();
 
+			if (laboratories.isEmpty()) {
+				System.err.println("No laboratories found. Skipping data initialization.");
+				return; // Exit the method early if there are no laboratories
+			}
+
 			Random random = new Random();
 
 			for (int i = 0; i < 5; i++) {
@@ -63,4 +68,5 @@ public class AnalysisServiceApplication {
 			}
 		};
 	}
+
 }

@@ -2,12 +2,12 @@ package com.example.laboratory_service.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
+
 
 @Entity
 @Data
@@ -43,6 +43,16 @@ public class Laboratory {
         this.active = active;
         this.dateActivation = dateActivation;
     }
+
+
+
+    public Laboratory(Long id, String nom, boolean active) {
+        this.id = id;
+        this.nom = nom;
+        this.active = active;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -80,7 +90,7 @@ public class Laboratory {
         this.nrc = nrc;
     }
 
-    public boolean active() {
+    public boolean getActive() {
         return active;
     }
 
@@ -95,4 +105,9 @@ public class Laboratory {
     public void setDateActivation(Date dateActivation) {
         this.dateActivation = dateActivation;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
 }

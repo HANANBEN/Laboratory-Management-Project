@@ -27,5 +27,52 @@ public class Adress {
         this.commune = commune;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getNumVoie() {
+        return numVoie;
+    }
+
+    public void setNumVoie(int numVoie) {
+        this.numVoie = numVoie;
+    }
+
+    public String getNomVoie() {
+        return nomVoie;
+    }
+
+    public void setNomVoie(String nomVoie) {
+        this.nomVoie = nomVoie;
+    }
+
+    public Long getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(Long codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getCommune() {
+        return commune;
+    }
+
+    public void setCommune(String commune) {
+        this.commune = commune;
+    }
 }
 

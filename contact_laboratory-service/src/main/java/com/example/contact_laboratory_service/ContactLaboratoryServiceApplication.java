@@ -32,12 +32,7 @@ public class ContactLaboratoryServiceApplication {
 
 				List<Adress> adresses=adressService.getAllAdresses().getContent().stream().toList();
 			List<Laboratory> laboratories=labService.getAllLaboratories().getContent().stream().toList();
-
-			Long laboratoryId=1L;
-			Long adressId=1L;
 			Random random=new Random();
-
-			Laboratory laboratory=labService.getLaboratoryById(laboratoryId);
 
 			for (int i =0 ; i<7; i++){
 // Create a new instance of ContactLaboratory

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="adress-service")
 public interface AdressClientService {
 
-
     @GetMapping("/adresses/{id}?projection=fullAdress")
     Adress getAdressById(@PathVariable("id") Long id);
 
