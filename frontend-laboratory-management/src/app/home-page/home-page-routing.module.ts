@@ -10,7 +10,7 @@ import {ServiceComponent} from './components/service/service.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {CreateaccountComponent} from './components/createaccount/createaccount.component';
 import {
-  TechnicianDashboardComponentComponent
+  TechnicianDashboardComponent
 } from './components/technician-dashboard-component/technician-dashboard-component.component';
 import {
   PatientDashboardComponentComponent
@@ -19,6 +19,9 @@ import {AuthGuard} from '../guard/auth.guard';
 import {ManageProfileComponent} from './components/manage-profile/manage-profile.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {AdminDashboardComponent} from './components/admin-dashboard-component/admin-dashboard-component.component';
+import {
+  ListAllUserComponent
+} from './components/user-laboratory-management/components/list-all-user-labo/list-all-user-labo.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Pas de chemin supplémentaire,
@@ -29,10 +32,11 @@ const routes: Routes = [
   { path: 'contact' , component: ContactComponent },
   { path: 'createaccount' , component: CreateaccountComponent },
   { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard], data: { role: 'admin' } },
-  { path: 'technician/dashboard', component: TechnicianDashboardComponentComponent , canActivate: [AuthGuard], data: { role: 'technicien' } },
+  { path: 'technician/dashboard', component: TechnicianDashboardComponent , canActivate: [AuthGuard], data: { role: 'technicien' } },
   { path: 'patient/dashboard', component: PatientDashboardComponentComponent, canActivate: [AuthGuard], data: { role: 'patient' } },
   { path: 'manage-profile', component: ManageProfileComponent },
   { path: 'reset-password', component: ResetPasswordComponent},
+  { path: 'list-user', component: ListAllUserComponent}
 
 ];
 

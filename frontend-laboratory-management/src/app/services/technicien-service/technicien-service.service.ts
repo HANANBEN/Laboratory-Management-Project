@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Utilisateur } from '../../models/utilisateur.model'; // Import de l'interface Utilisateur
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Utilisateur} from '../../models/utilisateur.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class AdminService {
+export class TechnicienService {
+
   private apiUrl = 'http://localhost:8082/api/users'; // URL de l'API backend
 
   constructor(private http: HttpClient) {}
