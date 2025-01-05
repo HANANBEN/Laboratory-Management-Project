@@ -1,0 +1,102 @@
+/* Global Styles */
+body {
+  background-color: #f4f7fa;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: #7c65a9;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.required {
+  color: red;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #7c65a9;
+  outline: none;
+}
+
+.form-group input[readonly] {
+  background-color: #e9ecef;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #7c65a9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.form-container button:hover {
+  background-color: #5a4780;
+}
+
+.secondary-button {
+  background-color: #96d4ca;
+  margin-top: 10px;
+}
+
+.secondary-button:hover {
+  background-color: #5a4780;
+}
+
+.error-message {
+  color: red;
+  font-size: 1rem;
+  margin-top: 15px;
+  text-align: center;
+}
+/* Styles pour les icônes */
+button i {
+  margin-right: 8px; /* Espace entre l'icône et le texte */
+  font-size: 1.2rem;  /* Taille de l'icône */
+}
+
+.submit-button, .secondary-button {
+  display: flex;
+  align-items: center;  /* Centrer l'icône et le texte verticalement */
+  justify-content: center;
+}

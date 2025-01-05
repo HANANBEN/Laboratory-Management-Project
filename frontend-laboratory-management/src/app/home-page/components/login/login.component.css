@@ -18,7 +18,7 @@ body{
 
 .registration-form .form-icon{
   text-align: center;
-  background-color: #5891ff;
+  background-color: #9d80cb;
   border-radius: 50%;
   font-size: 40px;
   color: white;
@@ -40,7 +40,7 @@ body{
   padding: 10px 20px;
   font-size: 18px;
   font-weight: bold;
-  background-color: #e94795;
+  background-color: rgb(28, 155, 135);
   border: none;
   color: white;
   margin-top: 20px;
@@ -67,7 +67,7 @@ body{
 .registration-form .social-icons a{
   font-size: 23px;
   margin: 0 3px;
-  color: #5691ff;
+  color: rgba(150, 212, 202, 0.77);
   border: 1px solid;
   border-radius: 50%;
   width: 45px;

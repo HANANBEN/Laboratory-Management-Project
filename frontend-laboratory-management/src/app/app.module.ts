@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HomePageRoutingModule } from './home-page/home-page-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdressManagementModule } from './adress-management/adress-management.module';
+import { ManageProfileComponent } from './home-page/components/manage-profile/manage-profile.component';
 
 // Import du module AnalysisManagement
 import { AnalysisManagementModule } from './analysis-management/analysis-management.module';
@@ -18,6 +19,10 @@ import {EpreuveManagementRoutingModule} from './epreuve-management/epreuve-manag
 @NgModule({
   declarations: [
     AppComponent,
+    ManageProfileComponent,
+
+
+
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+<div class="container py-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow rounded-3">
+        <div class="card-body p-4">
+          <h4 class="text-center my-4 text-primary">Create New Laboratory Contact</h4>
+
+          <form (ngSubmit)="saveContact()">
+            <!-- Email Field -->
+            <div class="form-group mb-4">
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="contact.email"
+                name="email"
+                class="form-control"
+                required
+                placeholder="Enter email"
+              />
+              <div *ngIf="!contact.email" class="text-danger">Email is required.</div>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group mb-4">
+              <label for="phone" class="form-label">Phone:</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                <input
+                  type="tel"
+                  id="phone"
+                  [(ngModel)]="contact.numTel"
+                  name="phone"
+                  class="form-control"
+                  required
+                  placeholder="Enter phone number"
+                />
+              </div>
+            </div>
+
+            <!-- Fax Field -->
+            <div class="form-group mb-4">
+              <label for="fax" class="form-label">Fax:</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-fax"></i></span>
+                <input
+                  type="text"
+                  id="fax"
+                  [(ngModel)]="contact.fax"
+                  name="fax"
+                  class="form-control"
+                  placeholder="Enter fax number"
+                />
+              </div>
+            </div>
+
+            <!-- Address Dropdown -->
+            <div class="form-group mb-4">
+              <label for="adress" class="form-label">Assign Address:</label>
+              <select
+                id="adress"
+                [(ngModel)]="contact.fkIdAdress"
+                name="adress"
+                class="form-select"
+              >
+                <option value="0" disabled selected>Select an address</option>
+                <option *ngFor="let addr of addresses" [value]="addr.id">
+                  {{ addr.numVoie }} {{ addr.nomVoie }}, {{ addr.ville }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Laboratory Dropdown -->
+            <div class="form-group mb-4">
+              <label for="laboratory" class="form-label">Assign Laboratory:</label>
+              <select
+                id="laboratory"
+                [(ngModel)]="contact.fkIdLaboratory"
+                name="laboratory"
+                class="form-select"
+              >
+                <option value="0" disabled selected>Select a laboratory</option>
+                <option *ngFor="let lab of laboratories" [value]="lab.id">
+                  Nom: {{ lab.nom }}, NRC: {{ lab.nrc }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-center flex-wrap gap-2">
+              <button type="submit" class="btn btn-primary shadow-sm">
+                <i class="fas fa-save"></i> Save Contact
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary shadow-sm"
+                (click)="cancel()"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

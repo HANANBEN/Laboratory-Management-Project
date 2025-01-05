@@ -1,6 +1,7 @@
-import {Laboratoire} from './laboratoire.model';
+import { Laboratoire } from './laboratoire.model';
 
 export interface Utilisateur {
+  id?: number; // Add id for deleting/updating
   email: string; // Email unique pour identifier l'utilisateur
   nomComplet: string; // Nom complet de l'utilisateur
   password?: string; // Mot de passe (facultatif)

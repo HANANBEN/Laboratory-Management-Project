@@ -12,8 +12,11 @@ import { ContactComponent } from './components/contact/contact.component';
 import { CreateaccountComponent } from './components/createaccount/createaccount.component';
 import { RouterModule } from '@angular/router';
 import { PatientDashboardComponentComponent } from './components/patient-dashboard-component/patient-dashboard-component.component';
-import { TechnicianDashboardComponentComponent } from './components/technician-dashboard-component/technician-dashboard-component.component';
-import { AdminDashboardComponentComponent } from './components/admin-dashboard-component/admin-dashboard-component.component';
+import { TechnicianDashboardComponent } from './components/technician-dashboard-component/technician-dashboard-component.component';
+import { AdminDashboardComponent} from './components/admin-dashboard-component/admin-dashboard-component.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { UserLaboratoryManagementComponent } from './components/user-laboratory-management/user-laboratory-management.component';
+import { ManagePatientComponent } from './components/manage-patient/manage-patient.component';
 
 
 
@@ -28,8 +31,11 @@ import { AdminDashboardComponentComponent } from './components/admin-dashboard-c
     ContactComponent,
     CreateaccountComponent,
     PatientDashboardComponentComponent,
-    TechnicianDashboardComponentComponent,
-    AdminDashboardComponentComponent
+    TechnicianDashboardComponent,
+    AdminDashboardComponent,
+    ResetPasswordComponent,
+    UserLaboratoryManagementComponent,
+    ManagePatientComponent
   ],
   imports: [
     CommonModule,
