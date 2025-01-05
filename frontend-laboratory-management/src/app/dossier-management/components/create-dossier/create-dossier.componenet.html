@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+<div class="container py-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow rounded-3">
+        <div class="card-body p-4">
+          <h4 class="text-center my-4 text-primary">Create New Dossier</h4>
+
+          <form (ngSubmit)="onSubmit()" [formGroup]="dossierForm">
+            <!-- Dossier Number Field -->
+            <div class="form-group mb-4">
+              <label for="numDossier" class="form-label">Dossier Number:</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-folder"></i></span>
+                <input
+                  type="number"
+                  id="numDossier"
+                  formControlName="numDossier"
+                  class="form-control"
+                  placeholder="Enter dossier number"
+                />
+              </div>
+            </div>
+
+            <!-- Patient Selection -->
+            <div class="form-group mb-4">
+              <label for="patient" class="form-label">Patient:</label>
+              <select id="patient" formControlName="patientId" class="form-select">
+                <option value="" disabled selected>Select a patient</option>
+                <option *ngFor="let patient of patients" [value]="patient.id">
+                  {{ patient.nomComplet }} - {{ patient.numPieceIdentite }}
+                </option>
+              </select>
+            </div>
+
+            <!-- User Email Field -->
+            <div class="form-group mb-4">
+              <label for="userEmail" class="form-label">User Email:</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input
+                  type="email"
+                  id="userEmail"
+                  formControlName="fkEmailUtilisateur"
+                  class="form-control"
+                  placeholder="Enter user email"
+                />
+              </div>
+            </div>
+
+            <!-- Creation Date Field -->
+            <div class="form-group mb-4">
+              <label for="creationDate" class="form-label">Creation Date:</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                <input
+                  type="date"
+                  id="creationDate"
+                  formControlName="date"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary shadow-sm">
+                <i class="fas fa-save"></i> Save Dossier
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

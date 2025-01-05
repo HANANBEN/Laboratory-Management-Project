@@ -1,20 +1,34 @@
 package com.example.epreuve_service.model;
 
+import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Analysis{
+public class Analysis {
 
     private Long id;
     private Long fkIdLaboratoire;
     private String nom;
     private String description;
+<<<<<<< HEAD
 
+=======
+    private Date dateCreation;
+    private boolean active;
+
+    // Constructeur sans paramètre
+    public Analysis() {
+    }
+
+    // Constructeur avec paramètres
+    public Analysis(Long fkIdLaboratoire, String nom, String description, Date dateCreation, boolean active) {
+        this.fkIdLaboratoire = fkIdLaboratoire;
+        this.nom = nom;
+        this.description = description;
+        this.dateCreation = dateCreation;
+        this.active = active;
+    }
+
+    // Getters et Setters
+>>>>>>> 62175538e4ab8441cec4582bd65be791bd502657
     public Long getId() {
         return id;
     }
@@ -46,4 +60,23 @@ public class Analysis{
     public void setDescription(String description) {
         this.description = description;
     }
+<<<<<<< HEAD
+=======
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+>>>>>>> 62175538e4ab8441cec4582bd65be791bd502657
 }

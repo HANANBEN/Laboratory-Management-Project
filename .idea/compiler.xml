@@ -10,7 +10,7 @@
         <module name="config-service" />
         <module name="gateway-service" />
       </profile>
-      <profile name="Annotation profile for dossier-service" enabled="true">
+      <profile name="Annotation profile for adress-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -18,8 +18,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="dossier-service" />
-        <module name="laboratory-service" />
         <module name="analysis-service" />
+        <module name="laboratory-service" />
         <module name="examen-service" />
         <module name="contact_laboratory-service" />
         <module name="user-service" />

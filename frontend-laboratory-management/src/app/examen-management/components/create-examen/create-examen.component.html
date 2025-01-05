@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+<section class="vh-100" style="background-color: #f8f9fa;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3 shadow">
+          <div class="card-body p-4">
+            <h4 class="text-center my-4 pb-3 text-primary">Create New Examen</h4>
+
+            <form (ngSubmit)="createExamen()">
+              <div class="mb-3">
+                <label for="dossier" class="form-label">Select Dossier</label>
+                <select id="dossier" class="form-control" [(ngModel)]="examen.fkNumDossier" name="fkNumDossier" required>
+                  <option *ngFor="let dossier of dossiers" [value]="dossier.numDossier">
+                    {{ dossier.numDossier }} - {{ dossier.patient.nomComplet }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="epreuve" class="form-label">Select Epreuve</label>
+                <select id="epreuve" class="form-control" [(ngModel)]="examen.fkIdEpeuve" name="fkIdEpeuve" required>
+                  <option *ngFor="let epreuve of epreuves" [value]="epreuve.id">{{ epreuve.nom }}</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="testAnalysis" class="form-label">Select Test Analysis</label>
+                <select id="testAnalysis" class="form-control" [(ngModel)]="examen.fkIdTestAnalysis" name="fkIdTestAnalysis" required>
+                  <option *ngFor="let analysis of analyses" [value]="analysis.id">{{ analysis.nom }}</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="patient" class="form-label">Select Patient</label>
+                <select id="patient" class="form-control" [(ngModel)]="examen.fkPatientId" name="fkPatientId" required>
+                  <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.nomComplet }}</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="resultat" class="form-label">Resultat</label>
+                <textarea id="resultat" class="form-control" [(ngModel)]="examen.resultat" name="resultat"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Create Examen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

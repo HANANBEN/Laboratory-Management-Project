@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ManageProfileComponent} from './home-page/components/manage-profile/manage-profile.component';
 
 const routes: Routes = [
   // Chargement paresseux des modules principaux
@@ -33,8 +32,17 @@ const routes: Routes = [
     loadChildren: () => import('./analysis-management/analysis-management.module').then(m => m.AnalysisManagementModule),
   },
   {
+
     path: 'epreuves', // Nouvelle route pour epreuve-management
-    loadChildren: () => import('./epreuve-management/epreuve-management.module').then(m => m.EpreuveManagementModule),
+    loadChildren: () => import('./epreuve-management/epreuve-management.module').then(m => m.EpreuveManagementModule)
+  },
+  {
+    path: 'dossiers', // Nouvelle route pour dossier-management
+    loadChildren: () => import('./dossier-management/dossier-management.module').then(m => m.DossierManagementModule),
+  },
+  {
+    path: 'examens', // Nouvelle route pour examen-management
+    loadChildren: () => import('./examen-management/examen-management.module').then(m => m.ExamenManagementModule),
   },
 ];
 

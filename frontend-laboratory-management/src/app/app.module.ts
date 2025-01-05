@@ -13,8 +13,12 @@ import { ManageProfileComponent } from './home-page/components/manage-profile/ma
 // Import du module AnalysisManagement
 import { AnalysisManagementModule } from './analysis-management/analysis-management.module';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+
 import {EpreuveManagementModule} from './epreuve-management/epreuve-management.module';
-import {EpreuveManagementRoutingModule} from './epreuve-management/epreuve-management-routing.module';
+
+import {DossierManagementModule} from './dossier-management/dossier-management.module';
+import {ExamenManagementModule} from './examen-management/examen-management.module';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import {EpreuveManagementRoutingModule} from './epreuve-management/epreuve-manag
     AppRoutingModule,
     LaboManagementModule,
     AdressManagementModule,
+    ExamenManagementModule,
     FormsModule,
     RouterModule,
     HomePageRoutingModule,
@@ -36,6 +41,9 @@ import {EpreuveManagementRoutingModule} from './epreuve-management/epreuve-manag
     // Ajout du module AnalysisManagement
     AnalysisManagementModule,
     EpreuveManagementModule,
+
+    DossierManagementModule,
+
   ],
   providers: [
     provideAnimationsAsync(),
