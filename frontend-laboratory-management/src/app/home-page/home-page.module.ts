@@ -16,6 +16,7 @@ import { TechnicianDashboardComponent } from './components/technician-dashboard-
 import { AdminDashboardComponent} from './components/admin-dashboard-component/admin-dashboard-component.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UserLaboratoryManagementComponent } from './components/user-laboratory-management/user-laboratory-management.component';
+import { ManagePatientComponent } from './components/manage-patient/manage-patient.component';
 
 
 
@@ -33,7 +34,8 @@ import { UserLaboratoryManagementComponent } from './components/user-laboratory-
     TechnicianDashboardComponent,
     AdminDashboardComponent,
     ResetPasswordComponent,
-    UserLaboratoryManagementComponent
+    UserLaboratoryManagementComponent,
+    ManagePatientComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,80 @@
+<div class="container my-5">
+  <h2>Manage Patients</h2>
+
+  <!-- Bouton pour retourner à la page précédente -->
+  <form (ngSubmit)="onSubmit()" #patientForm="ngForm" class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button class="btn btn-secondary" type="button" (click)="goBack()">⬅ Back</button>
+    </div>
+
+    <!-- Formulaire pour ajouter un nouveau patient -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        [(ngModel)]="newPatient.email"
+        name="email"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="nomComplet" class="form-label">Nom complet</label>
+      <input
+        type="text"
+        id="nomComplet"
+        class="form-control"
+        [(ngModel)]="newPatient.nomComplet"
+        name="nomComplet"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="numTel" class="form-label">Numéro de téléphone</label>
+      <input
+        type="text"
+        id="numTel"
+        class="form-control"
+        [(ngModel)]="newPatient.numTel"
+        name="numTel"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Patient</button>
+  </form>
+
+  <!-- Liste des patients -->
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Nom complet</th>
+      <th>Téléphone</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let patient of patients">
+      <td>{{ patient.id }}</td>
+      <td>{{ patient.email }}</td>
+      <td>{{ patient.nomComplet }}</td>
+      <td>{{ patient.numTel }}</td>
+      <td>
+        <button
+          class="btn btn-warning btn-sm"
+          (click)="editPatient(patient)"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="deletePatient(patient.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

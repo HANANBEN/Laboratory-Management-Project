@@ -22,6 +22,7 @@ import {AdminDashboardComponent} from './components/admin-dashboard-component/ad
 import {
   ListAllUserComponent
 } from './components/user-laboratory-management/components/list-all-user-labo/list-all-user-labo.component';
+import {ManagePatientComponent} from './components/manage-patient/manage-patient.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Pas de chemin supplémentaire,
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path: 'patient/dashboard', component: PatientDashboardComponentComponent, canActivate: [AuthGuard], data: { role: 'patient' } },
   { path: 'manage-profile', component: ManageProfileComponent },
   { path: 'reset-password', component: ResetPasswordComponent},
-  { path: 'list-user', component: ListAllUserComponent}
+  { path: 'list-user', component: ListAllUserComponent},
+  { path:'manage-patient', component:ManagePatientComponent}
 
 ];
 

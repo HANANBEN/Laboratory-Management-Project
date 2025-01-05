@@ -1,0 +1,127 @@
+/* Container principal */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  color: #822faf;
+  margin-bottom: 20px;
+}
+
+/* Formulaire */
+form {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form .form-label {
+  font-weight: bold;
+  color: #495057;
+}
+
+form .form-control {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+form .btn-primary {
+  background-color: #822faf;
+  border-color: #822faf;
+}
+
+form .btn-primary:hover {
+  background-color: #6e2397;
+  border-color: #6e2397;
+}
+
+/* Table des patients */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #822faf;
+  color: #ffffff;
+}
+
+thead th {
+  text-align: left;
+  padding: 10px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+td,
+th {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+
+/* Boutons d'action */
+.btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #bd2130;
+  border-color: #b21f2d;
+}
+/* Conteneur pour le bouton Back */
+.back-button-container {
+  margin-bottom: 20px;
+}
+
+.back-button-container .btn {
+  background-color: #822faf;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.back-button-container .btn:hover {
+  background-color: #822faf;
+}
