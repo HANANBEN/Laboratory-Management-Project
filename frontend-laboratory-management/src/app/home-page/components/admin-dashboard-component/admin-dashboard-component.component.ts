@@ -64,4 +64,8 @@ export class AdminDashboardComponent implements OnInit {
       });
     }
   }
+
+  navigateToLaboratories() {
+    this.router.navigate(['/laboratories/list']);
+  }
 }
