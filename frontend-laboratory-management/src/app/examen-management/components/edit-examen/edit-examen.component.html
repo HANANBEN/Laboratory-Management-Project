@@ -1,0 +1,111 @@
+<section class="vh-100" style="background-color: #eef2f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3 shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="text-center my-4 pb-3 text-primary">Edit Examen</h4>
+            <form (ngSubmit)="updateExamen()">
+
+              <!-- Examen ID -->
+              <div class="mb-3">
+                <label for="id" class="form-label">Examen ID</label>
+                <input
+                  type="number"
+                  id="id"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="examen.id"
+                  name="id"
+                  required
+                  placeholder="Enter examen ID"
+                  disabled
+                />
+              </div>
+
+              <!-- Dossier -->
+              <div class="mb-3">
+                <label for="dossier" class="form-label">Dossier</label>
+                <select
+                  id="dossier"
+                  class="form-select border-primary shadow-sm"
+                  [(ngModel)]="examen.dossier"
+                  name="dossier"
+                  required
+                >
+                  <option value="" disabled>Select a dossier</option>
+                  <option *ngFor="let dossier of dossiers" [ngValue]="dossier">
+                    {{ dossier.numDossier }} - {{ dossier.patient.nomComplet }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Epreuve -->
+              <div class="mb-3">
+                <label for="epreuve" class="form-label">Epreuve</label>
+                <select
+                  id="epreuve"
+                  class="form-select border-primary shadow-sm"
+                  [(ngModel)]="examen.epreuve"
+                  name="epreuve"
+                  required
+                >
+                  <option value="" disabled>Select an epreuve</option>
+                  <option *ngFor="let epreuve of epreuves" [ngValue]="epreuve">
+                    {{ epreuve.nom }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Test Analysis -->
+              <div class="mb-3">
+                <label for="testAnalysis" class="form-label">Test Analysis</label>
+                <select
+                  id="testAnalysis"
+                  class="form-select border-primary shadow-sm"
+                  [(ngModel)]="examen.testAnalysis"
+                  name="testAnalysis"
+                  required
+                >
+                  <option value="" disabled>Select a test analysis</option>
+                  <option *ngFor="let analysis of analyses" [ngValue]="analysis">
+                    {{ analysis.description }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- Result -->
+              <div class="mb-3">
+                <label for="resultat" class="form-label">Result</label>
+                <input
+                  type="text"
+                  id="resultat"
+                  class="form-control border-primary shadow-sm"
+                  [(ngModel)]="examen.resultat"
+                  name="resultat"
+                  placeholder="Enter result"
+                />
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="btn btn-primary shadow-sm w-100 d-flex justify-content-center align-items-center gap-2"
+              >
+                <i class="fas fa-save"></i> Update Examen
+              </button>
+
+              <!-- Cancel Button -->
+              <button
+                type="button"
+                class="btn btn-secondary shadow-sm w-100 mt-3"
+                (click)="cancelEdit()"
+              >
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

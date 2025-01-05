@@ -145,4 +145,18 @@ export class DossierService {
       })
     );
   }
+
+  /**
+   * Fetch all dossiers (additional method)
+   * @returns Observable of Dossier array
+   */
+  getAllDossiers(): Observable<Dossier[]> {
+    const url = `${this.BASE_URL}/listAllDossiers`;
+    return this.http.get<Dossier[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error retrieving all dossiers:', error);
+        return throwError(() => new Error('Failed to retrieve all dossiers'));
+      })
+    );
+  }
 }

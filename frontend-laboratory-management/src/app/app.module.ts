@@ -13,6 +13,7 @@ import { AdressManagementModule } from './adress-management/adress-management.mo
 import { AnalysisManagementModule } from './analysis-management/analysis-management.module';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {DossierManagementModule} from './dossier-management/dossier-management.module';
+import {ExamenManagementModule} from './examen-management/examen-management.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {DossierManagementModule} from './dossier-management/dossier-management.m
     AppRoutingModule,
     LaboManagementModule,
     AdressManagementModule,
+    ExamenManagementModule,
     FormsModule,
     RouterModule,
     HomePageRoutingModule,

@@ -61,9 +61,22 @@ export class AnalysisService {
       })
     );
   }
-  deleteAnalysis(id: number) {
-    return this.http.delete(`${this.BASE_URL}/analyses/${id}`);
+
+  /**
+   * Deletes an analysis by its ID.
+   * @param id The ID of the analysis to be deleted
+   * @returns An Observable of the deletion result
+   */
+  deleteAnalysis(id: number): Observable<void> {
+    const url = `${this.BASE_URL}/analyses/${id}`;
+    return this.http.delete<void>(url).pipe(
+      catchError((error) => {
+        console.error(`Error deleting analysis with ID ${id}:`, error);
+        return throwError(() => new Error('Failed to delete analysis'));
+      })
+    );
   }
+
   /**
    * Updates an existing analysis by its ID.
    * @param idAnalysis The ID of the analysis to be updated
@@ -80,4 +93,18 @@ export class AnalysisService {
     );
   }
 
+  /**
+   * Fetches all analyses from the API.
+   * @returns An Observable of an array of Analysis objects
+   */
+  getAllAnalyses(): Observable<Analysis[]> {
+    const url = `${this.BASE_URL}/analyses`;
+    return this.http.get<any>(url).pipe(
+      map((response) => response._embedded?.analyses || []), // Extract data from _embedded field
+      catchError((error) => {
+        console.error('Error fetching all analyses:', error);
+        return throwError(() => new Error('Failed to fetch all analyses'));
+      })
+    );
+  }
 }

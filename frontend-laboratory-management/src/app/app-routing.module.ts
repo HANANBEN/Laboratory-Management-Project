@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'dossiers', // Nouvelle route pour dossier-management
     loadChildren: () => import('./dossier-management/dossier-management.module').then(m => m.DossierManagementModule),
   },
+  {
+    path: 'examens', // Nouvelle route pour examen-management
+    loadChildren: () => import('./examen-management/examen-management.module').then(m => m.ExamenManagementModule),
+  },
 ];
 
 @NgModule({
