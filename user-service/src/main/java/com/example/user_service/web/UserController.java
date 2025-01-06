@@ -2,16 +2,18 @@ package com.example.user_service.web;
 
 import com.example.user_service.jms.MessageSender;
 import com.example.user_service.service.ResetCodeService;
+import com.example.user_service.repositories.UserRepository;
+import com.example.user_service.entities.User;
+import com.example.user_service.util.JWTUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.user_service.repositories.UserRepository;
-import com.example.user_service.entities.User;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,16 +23,17 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private final MessageSender messageSender;
     private final ResetCodeService resetCodeService;
+    private final JWTUtil jwtUtil;
 
     @Autowired
-    public UserController(UserRepository userRepository, MessageSender messageSender, ResetCodeService resetCodeService) {
+    public UserController(UserRepository userRepository, MessageSender messageSender, ResetCodeService resetCodeService, JWTUtil jwtUtil) {
         this.userRepository = userRepository;
         this.messageSender = messageSender;
         this.resetCodeService = resetCodeService;
+        this.jwtUtil = jwtUtil;
     }
 
     // Validation de l'ancien mot de passe
@@ -39,6 +42,12 @@ public class UserController {
         String email = request.get("email");
         String oldPassword = request.get("oldPassword");
         logger.info("Validating old password for email: {}", email);
+
+        if (email == null || oldPassword == null) {
+            logger.warn("Email or old password is missing");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("error", "Email and old password are required"));
+        }
 
         User user = userRepository.findByEmail(email);
         if (user == null) {
@@ -117,7 +126,6 @@ public class UserController {
         return ResponseEntity.ok(Map.of("message", "Password reset successfully"));
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         logger.info("Login attempt for email: {}", loginRequest.getEmail());
@@ -129,7 +137,17 @@ public class UserController {
                     .body(Map.of("error", "Invalid email or password"));
         }
 
-        Map<String, String> response = new HashMap<>();
+        // Générer un token JWT
+        org.springframework.security.core.userdetails.User userDetails = new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                new ArrayList<>()
+        );
+
+        String token = jwtUtil.generateToken(userDetails);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", token); // Ajouter le token dans la réponse
         response.put("role", user.getRole());
         response.put("email", user.getEmail());
         response.put("nomComplet", user.getNomComplet());
