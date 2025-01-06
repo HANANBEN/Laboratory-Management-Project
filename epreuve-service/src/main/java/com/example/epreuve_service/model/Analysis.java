@@ -8,9 +8,7 @@ public class Analysis {
     private Long fkIdLaboratoire;
     private String nom;
     private String description;
-<<<<<<< HEAD
 
-=======
     private Date dateCreation;
     private boolean active;
 
@@ -28,7 +26,6 @@ public class Analysis {
     }
 
     // Getters et Setters
->>>>>>> 62175538e4ab8441cec4582bd65be791bd502657
     public Long getId() {
         return id;
     }
@@ -60,8 +57,6 @@ public class Analysis {
     public void setDescription(String description) {
         this.description = description;
     }
-<<<<<<< HEAD
-=======
 
     public Date getDateCreation() {
         return dateCreation;
@@ -78,5 +73,5 @@ public class Analysis {
     public void setActive(boolean active) {
         this.active = active;
     }
->>>>>>> 62175538e4ab8441cec4582bd65be791bd502657
+
 }

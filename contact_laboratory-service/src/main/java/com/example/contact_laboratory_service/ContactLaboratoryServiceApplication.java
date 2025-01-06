@@ -23,7 +23,7 @@ public class ContactLaboratoryServiceApplication {
 	}
 
 
-	@Bean
+	/*@Bean
 	 CommandLineRunner LoadContactLaboratory(
 			ContactLaboratoryRepository contactrep , AdressClientService adressService , LaboratoryClientService labService) {
 
@@ -50,7 +50,7 @@ public class ContactLaboratoryServiceApplication {
 
 
 		};
-	};
+	};*/
 
 
 

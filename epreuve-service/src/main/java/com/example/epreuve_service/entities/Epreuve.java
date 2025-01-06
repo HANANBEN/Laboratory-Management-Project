@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "epreuve")
-@Data
-@AllArgsConstructor
+
 public class Epreuve {
 
     @Id
@@ -24,7 +22,7 @@ public class Epreuve {
 
     private String nom;
 
-<<<<<<< HEAD
+
     public Epreuve(Long id, Long fkIdAnalyse, String nom) {
         this.id = id;
         this.fkIdAnalyse = fkIdAnalyse;
@@ -32,24 +30,8 @@ public class Epreuve {
         this.nom = nom;
     }
 
-    public Epreuve() {
-    }
+    public Epreuve() {}
 
-=======
-    // Constructeur sans paramètre
-    public Epreuve() {
-    }
-
-    // Constructeur avec paramètres
-    public Epreuve(Long id, Long fkIdAnalyse, Analysis analysis, String nom) {
-        this.id = id;
-        this.fkIdAnalyse = fkIdAnalyse;
-        this.analysis = analysis;
-        this.nom = nom;
-    }
-
-    // Getters et Setters
->>>>>>> 62175538e4ab8441cec4582bd65be791bd502657
     public Long getId() {
         return id;
     }
@@ -81,8 +63,6 @@ public class Epreuve {
     public void setNom(String nom) {
         this.nom = nom;
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 62175538e4ab8441cec4582bd65be791bd502657
+

@@ -1,0 +1,189 @@
+version: '3.8'
+
+services:
+  # Consul service
+  consul:
+    image: hashicorp/consul:1.14.5
+    container_name: consul-service
+    ports:
+      - "8500:8500"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+    networks:
+      - my_network
+    command: "consul agent -dev -client=0.0.0.0"
+
+  # PostgreSQL database for Config service
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: configdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  # Config service
+  config-service:
+    image: config-service:latest
+    container_name: config-service
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul   # Ensure config-service connects to the Consul container
+      - POSTGRES_HOST=postgres
+    depends_on:
+      - consul
+      - postgres
+    networks:
+      - my_network
+
+  # Gateway service
+  gateway-service:
+    image: gateway-service:latest
+    container_name: gateway-service
+    ports:
+      - "9999:9999"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Address service
+  address-service:
+    image: address-service:latest
+    container_name: address-service
+    ports:
+      - "8003:8003"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Laboratory service
+  laboratory-service:
+    image: laboratory-service:latest
+    container_name: laboratory-service
+    ports:
+      - "8989:8989"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Analysis service
+  analysis-service:
+    image: analysis-service:latest
+    container_name: analysis-service
+    ports:
+      - "5678:5678"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Contact laboratory service
+  contact-laboratory-service:
+    image: contact_laborartory-service:latest
+    container_name: contact-laboratory-service
+    ports:
+      - "6789:6789"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Dossier service
+  dossier-service:
+    image: dossier-service:latest
+    container_name: dossier-service
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Epreuve service
+  epreuve-service:
+    image: epreuve-service:latest
+    container_name: epreuve-service
+    ports:
+      - "1234:1234"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Examen service
+  examen-service:
+    image: examen-service:latest
+    container_name: examen-service
+    ports:
+      - "8070:8070"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # User service
+  user-service:
+    image: user-service:latest
+    container_name: user-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONSUL_HOST=consul
+    depends_on:
+      - consul
+    networks:
+      - my_network
+
+  # Frontend service
+  frontend:
+    image: frontend-laboratory-management:latest
+    container_name: frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - gateway-service
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:
+    driver: bridge
